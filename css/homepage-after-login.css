@@ -1,3 +1,4 @@
+/* Zachery Morris and Katharina Kemper */
 .text-edit1 {
   font-weight: 700;
   
@@ -32,4 +33,17 @@ opacity: 75;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+}
+
+.footer {
+  position: relative;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #343A40;
+  color: white;
+  text-align: center;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  letter-spacing: 5px;
 }

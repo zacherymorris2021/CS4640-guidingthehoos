@@ -1,3 +1,4 @@
+<!-- Zachery Morris and Katharina Kemper -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,31 +16,28 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 
 </head>
-
   <body>
     <!-- Navigation bar -->
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-        <ul class="navbar-nav mr-auto navbar-left">
-            <li class="navbar-brand"><img src="../images/small-logo.png" height="30" class="d-inline-block align-top" alt=""></li>
-            <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Organizations</a></li>
-            <li class="nav-item"><a class="nav-link" href="">Food Places</a></li>
-            <li class="nav-item"><a class="nav-link" href="">Study Spots</a> </li>
-        </ul>
-        <ul class="navbar-nav navbar-right">
-          <li class="nav-item" style="padding-top:3.5px">
-          <form action="" method = "GET" style="padding-right: 10px">
-              <input width=align="right" class="form-control" type ="text" name= 'q' placeholder="Search Website..." value = "">
-          </form>
-        </li>
-            <li class="nav-item">
-              <a class="nav-link" href="">Profile</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="../index.html" onclick="signOut();">Sign out</a>
-            </li>
-        </ul>
-    </nav>
+    <section>
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+          <ul class="navbar-nav mr-auto navbar-left">
+              <li class="navbar-brand"><img src="../images/small-logo.png" height="30" class="d-inline-block align-top" alt=""></li>
+              <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+              <li class="nav-item"><a class="nav-link" href="http://localhost/CS4640-ztm4qv-kk6ev-project/templates/organizations.html">Organizations</a></li>
+              <li class="nav-item"><a class="nav-link" href="http://localhost/CS4640-ztm4qv-kk6ev-project/templates/form.html">Add Organization</a></li>
+          </ul>
+          <ul class="navbar-nav navbar-right">
+            <li class="nav-item" style="padding-top:3.5px">
+            <form action="" method = "GET" style="padding-right: 10px">
+                <input width=align="right" class="form-control" type ="text" name= 'q' placeholder="Search Website..." value = "">
+            </form>
+          </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../index.html" onclick="signOut();">Sign out</a>
+              </li>
+          </ul>
+      </nav>
+    </section>
 
     <!-- Website description -->
     <section class="edit-container edit-center edit-content" style="max-width:600px">
@@ -49,15 +47,15 @@
       <p class="edit-justify">We have created an informational website about organizations, food places, and study spots around Grounds. Guiding the Hoos is made for UVA students that need recommendations for clubs to join, best study spots, and the tastiest food locations! Users can submit and view these different categories to make more well informed decisons.</p>
     </section>
 
-        <!-- Slide show -->
-        <section>
-          <img class="my-pics img-details" src="http://localhost/CS4640-ztm4qv-kk6ev-project/images/pic-1.jpg" >
-          <img class="my-pics img-details" src="http://localhost/CS4640-ztm4qv-kk6ev-project/images/pic-2.png" >
-          <br><br>
-        </section>
+    <!-- Slide show -->
+    <section>
+      <img class="my-pics img-details" src="http://localhost/CS4640-ztm4qv-kk6ev-project/images/pic-1.jpg" >
+      <img class="my-pics img-details" src="http://localhost/CS4640-ztm4qv-kk6ev-project/images/pic-2.png" >
+      <br><br>
+    </section>
 
     <!-- Footer -->
-    <footer class="edit-container edit-padding edit-center edit-black edit-xlarge">
+    <footer class=" footer">
       <a href="#"><i class="fa fa-facebook-official"></i></a>
       <a href="#"><i class="fa fa-pinterest-p"></i></a>
       <a href="#"><i class="fa fa-twitter"></i></a>
@@ -133,16 +131,18 @@
     }
 
     /* footer */
-    .edit-padding{
-      padding-top:50px!important;padding-bottom:50px!important
-    }
-    .edit-xlarge{
-      font-size:24px!important
-    }
-    .edit-black{
-      background-color:#343A40!important;
-    }
-
+    .footer {
+        position: relative;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: #343A40;
+        color: white;
+        text-align: center;
+        padding-top: 7px;
+        padding-bottom: 7px;
+        letter-spacing: 20px;
+      }
   </style>
 
   <script>

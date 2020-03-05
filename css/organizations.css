@@ -1,0 +1,93 @@
+/* Zachery Morris and Katharina Kemper */
+section, footer, nav {
+    display: block;
+  }
+body {
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.4em;
+}
+a {
+  text-decoration: none;
+  color: #333;
+}
+figure {
+  margin: 0;
+}
+
+.tile {
+  width: 250px;
+  height: 400px;
+  margin: 2em;
+  position: relative;
+  float: left;
+  border: #343A40;
+  border-color: #343A40;
+}
+  .tile .front, .back {
+    display: block;
+    top: 0; bottom: 0;
+    left: 0; right: 0;
+    width: 250px;
+    height: 400px;
+    position: absolute;
+    overflow: hidden;
+    text-align: center;
+  }
+  h3, p, a {
+    padding: 0 20px;
+  }
+  img {
+    max-height: 130px;
+  }
+  .front {
+    background: rgb(226, 226, 226);
+    transition: all .5s ease-in-out;
+    z-index: 2;
+  }
+    .front h3 {
+      font-size: 2em;
+      color: #fff;
+      text-shadow: 0 0 5px #000;
+      margin-top: -1.5em;
+      margin-bottom: 1.5em;
+    }
+
+  .back {
+    background: rgb(226, 226, 226);
+    color: rgb(11,63,114);
+    z-index: 1;
+    padding-top: 25px;
+    height: 400px;
+  }
+    .back h3 {
+      font-size: 1em;
+      color: rgb(11,63,114);
+      margin-top: 0.5em;
+      margin-bottom: 1em;
+    }
+    .back a {
+      display: block;
+      font-size: 1em;
+      color: rgb(11,63,114);
+      margin: 0 20px;
+      padding: .5em 0;
+    }
+
+    .front:hover {
+      top: -400px;
+      transform: rotate(4deg);
+    }
+
+    .footer {
+        position: relative;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: #343A40;
+        color: white;
+        text-align: center;
+        padding-top: 7px;
+        padding-bottom: 7px;
+      }
