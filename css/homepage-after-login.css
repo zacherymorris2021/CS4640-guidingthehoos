@@ -33,3 +33,15 @@ opacity: 75;
   -o-background-size: cover;
   background-size: cover;
 }
+
+.footer {
+  position: relative;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #343A40;
+  color: white;
+  text-align: center;
+  padding-top: 7px;
+  padding-bottom: 7px;
+}
