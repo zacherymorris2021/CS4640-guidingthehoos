@@ -1,0 +1,29 @@
+.text-edit1 {
+    font-weight: 700;
+    color: rgb(11,63,114);
+}
+
+.text-edit2 {
+    font-weight: 700;
+    font-style: italic;
+    color: rgb(11,63,114);
+}
+
+.card{
+height: 425px;
+margin-top: auto;
+margin-bottom: auto;
+width: 400px;
+border-width: 2px !important;
+border-color: rgba(255, 255, 255, 0.527) !important;
+background-color: rgba(255, 255, 255, 0.700) !important;
+opacity: 75;
+}
+
+html, body{
+    background: url(http://localhost/CS4640-ztm4qv-kk6ev-project/images/rotunda3.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
