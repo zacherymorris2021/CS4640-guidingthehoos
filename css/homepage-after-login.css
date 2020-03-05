@@ -1,3 +1,4 @@
+/* Zachery Morris and Katharina Kemper */
 .text-edit1 {
   font-weight: 700;
   
@@ -44,4 +45,5 @@ opacity: 75;
   text-align: center;
   padding-top: 7px;
   padding-bottom: 7px;
+  letter-spacing: 5px;
 }

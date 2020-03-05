@@ -1,8 +1,8 @@
+/* Zachery Morris and Katharina Kemper */
 section, footer, nav {
     display: block;
   }
 body {
-  background: #ffcc00;
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
   font-weight: 300;
   font-size: 14px;
@@ -71,7 +71,6 @@ figure {
       display: block;
       font-size: 1em;
       color: rgb(11,63,114);
-      border-top: 1px solid lighten(darken(#ffcc00,5));
       margin: 0 20px;
       padding: .5em 0;
     }
