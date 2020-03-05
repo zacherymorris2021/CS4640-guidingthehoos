@@ -10,8 +10,9 @@
   color: rgb(11,63,114);
 }
 
-.navbar {
-  min-height: 60px !important;
+.nav-item a:hover {
+  color: rgb(47, 241, 255) !important;
+  cursor: pointer;
 }
 
 .card{
