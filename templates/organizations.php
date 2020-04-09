@@ -17,14 +17,18 @@
 </head>
 
   <body>
+
+  <!-- Must connect to the DB -->
+  <?php require('../connect-db.php'); ?> 
+
     <!-- Navigation bar -->
 
         <nav class="navbar navbar-expand-md navbar-dark bg-dark">
             <ul class="navbar-nav mr-auto navbar-left">
                 <li class="navbar-brand"><img src="../images/small-logo.png" height="30" class="d-inline-block align-top" alt=""></li>
-                <li class="nav-item"><a class="nav-link" href="http://localhost/CS4640-ztm4qv-kk6ev-project/templates/homepage-after-login.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="http://localhost/CS4640-ztm4qv-kk6ev-project/templates/homepage-after-login.php">Home</a></li>
                 <li class="nav-item"><a class="nav-link active" href="#">Organizations</a></li>
-                <li class="nav-item"><a class="nav-link" href="http://localhost/CS4640-ztm4qv-kk6ev-project/templates/form.html">Add Organization</a></li>
+                <li class="nav-item"><a class="nav-link" href="http://localhost/CS4640-ztm4qv-kk6ev-project/templates/form.php">Add Organization</a></li>
             </ul>
             <ul class="navbar-nav navbar-right">
             <li class="nav-item" style="padding-top:3.5px">
@@ -33,7 +37,7 @@
             </form>
             </li>
                 <li class="nav-item">
-                <a class="nav-link" href="../index.html" onclick="signOut();">Sign out</a>
+                <a class="nav-link" href="../index.php" onclick="signOut();">Sign out</a>
                 </li>
             </ul>
         </nav>
