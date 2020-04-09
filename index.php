@@ -20,7 +20,7 @@
             <div class="card">
                 <div class="card-body">
                     <div style="text-align: center; padding-top:5%;">
-                        <a href="index.html"> <img src="./images/logo5.png" alt="Logo"></a><br>
+                        <a href="index.php"> <img src="./images/logo5.png" alt="Logo"></a><br>
                         <p class="text-edit1">Welcome to Guiding the Hoos, a website to stay updated on the best study spots, food locations, and organizations.</p>
                         <p class="text-edit2">Login below to access the site!</p>
                         <p style="margin-left:16%;" id="my-signin2"></p>
@@ -28,11 +28,16 @@
                 </div>
             </div>
         </div>
+
+<!-- Must connect to the DB -->
+<?php require('connect-db.php'); ?> 
+
 </body>
+
    <script>
      function onSuccess(googleUser) {
        console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
-       window.location = "http://localhost/CS4640-ztm4qv-kk6ev-project/templates/homepage-after-login.html"; // change when deploying
+       window.location = "http://localhost/CS4640-ztm4qv-kk6ev-project/templates/homepage-after-login.php"; // change when deploying
        var profile = googleUser.getBasicProfile();
        var user_name = profile.getName();
        document.getElementById('name').innerHTML = user_name;
