@@ -41,15 +41,14 @@
               <li class="nav-item"><a class="nav-link" href="http://localhost/CS4640-ztm4qv-kk6ev-project/templates/organizations.php">Organizations</a></li>
               <li class="nav-item"><a class="nav-link" href="http://localhost/CS4640-ztm4qv-kk6ev-project/templates/form.php">Add Organization</a></li>
           </ul>
+
           <ul class="navbar-nav navbar-right">
-            <li class="nav-item" style="padding-top:3.5px">
-            <form action="" method = "GET" style="padding-right: 10px">
-                <input width=align="right" class="form-control" type ="text" name= 'q' placeholder="Search Website..." value = "">
-            </form>
-          </li>
-              <li class="nav-item">
-                <a class="nav-link" href="logout.php">Sign out</a>
-              </li>
+            <li class="nav-item">
+              <a class="nav-link" href="logout.php"><?php echo $_SESSION['first_name'] . "'s Profile";?> </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="logout.php">Sign out</a>
+            </li>
           </ul>
       </nav>
     </section>
@@ -59,7 +58,7 @@
       <br><br>
       <h2 class="edit-wide">Guiding the Hoos</h2>
       <p class="edit-opacity"><i>We love Grounds and want others to express their opinions!</i></p>
-      <p class="edit-justify">We have created an informational website about organizations, food places, and study spots around Grounds. Guiding the Hoos is made for UVA students that need recommendations for clubs to join, best study spots, and the tastiest food locations! Users can submit and view these different categories to make more well informed decisons.</p>
+      <p class="edit-justify">We have created an informational website about organizations and clubs around Grounds. Guiding the Hoos is made for UVA students that need recommendations for student councils, greek life, and club sports - which just hits the surface of what we provide! A user can submit and view organizations, in hope to guide Hoos through a more thoughful decsion making process! </p>
     </section>
 
     <!-- Slide show -->
@@ -122,6 +121,7 @@
       margin-left: auto;
       margin-right: auto;
       width: 50%;
+      border-radius:10px;
     }
 
     /* Website description */
