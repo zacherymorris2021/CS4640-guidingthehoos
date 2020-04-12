@@ -21,6 +21,7 @@
     <!-- Must connect to the DB -->
     <?php require('../connect-db.php'); ?> 
 
+    <!-- check if user has session -->
     <?php
       // We need to use sessions, so you should always start sessions using the below code.
       session_start();
@@ -47,7 +48,7 @@
             </form>
           </li>
               <li class="nav-item">
-                <a class="nav-link" href="/logout.php">Sign out</a>
+                <a class="nav-link" href="logout.php">Sign out</a>
               </li>
           </ul>
       </nav>

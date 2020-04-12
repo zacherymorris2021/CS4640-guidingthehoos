@@ -14,8 +14,19 @@
 </head>
 <body>
 
-    <!-- Must connect to the DB -->
+    <!-- must connect to the DB -->
     <?php require('../connect-db.php'); ?> 
+
+    <!-- check if user has session -->
+    <?php
+      // We need to use sessions, so you should always start sessions using the below code.
+      session_start();
+      // If the user is not logged in redirect to the login page...
+      if (!isset($_SESSION['loggedin'])) {
+        header('Location: http://localhost/CS4640-ztm4qv-kk6ev-project/index.php');
+        exit;
+      }
+    ?>
 
     <!-- nav bar:
         1. Logo: small-logo.png
@@ -41,7 +52,7 @@
             </form>
             </li>
                 <li class="nav-item">
-                <a class="nav-link" href="/logout.php">Sign out</a>
+                <a class="nav-link" href="logout.php">Sign out</a>
                 </li>
             </ul>
         </nav>
