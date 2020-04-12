@@ -41,7 +41,7 @@
             </form>
             </li>
                 <li class="nav-item">
-                <a class="nav-link" href="../index.php" onclick="signOut();">Sign out</a>
+                <a class="nav-link" href="/logout.php">Sign out</a>
                 </li>
             </ul>
         </nav>

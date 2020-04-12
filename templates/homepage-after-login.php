@@ -21,6 +21,16 @@
     <!-- Must connect to the DB -->
     <?php require('../connect-db.php'); ?> 
 
+    <?php
+      // We need to use sessions, so you should always start sessions using the below code.
+      session_start();
+      // If the user is not logged in redirect to the login page...
+      if (!isset($_SESSION['loggedin'])) {
+        header('Location: http://localhost/CS4640-ztm4qv-kk6ev-project/index.php');
+        exit;
+      }
+    ?>
+
     <!-- Navigation bar -->
     <section>
       <nav class="navbar navbar-expand-md navbar-dark bg-dark">
@@ -37,7 +47,7 @@
             </form>
           </li>
               <li class="nav-item">
-                <a class="nav-link" href="../index.php" onclick="signOut();">Sign out</a>
+                <a class="nav-link" href="/logout.php">Sign out</a>
               </li>
           </ul>
       </nav>

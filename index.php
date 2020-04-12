@@ -18,11 +18,8 @@
     }
 
     .card{
-      height: 525px;
-      margin-top: -15px;
-      margin-bottom: auto;
-      margin-left: auto;
-      margin-right: auto;
+      height: 510px;
+      margin-top:-8px;
       width: 400px;
       border-width: 2px;
       border-color: rgba(255, 255, 255, 0.527);
@@ -84,13 +81,30 @@
       font-family:arial;
       margin-left: 95px;
       font-weight: 750;
+      font-size:small;
+      color: #337AB7;
     }
+
+    img{
+      width:80%;
+    }
+
+    .adjust-card{
+      margin-left: 34%;
+    }
+
   </style>
+
+<!-- must connect to the DB -->
+<?php require('connect-db.php'); ?> 
+
+<!-- start a session -->
+<?php session_start(); ?>
 
 </head>
   <body>
   <br><br>
-        <div class="d-flex justify-content-center h-100">
+        <div class="adjust-card">
             <div class="card">
                 <div class="card-body">
                     <div style="text-align: center; padding-top:5%;">
@@ -100,11 +114,11 @@
                         <div style="float:left;">
                         <form action="<?php $_SERVER['PHP_SELF']?>" method="POST"> 
                            <div class="label1" >Email:</div> 
-                           <input type="text" name="name" required autofocus /> </br>
+                           <input type="text" name="email" required autofocus /> </br>
                            <div class="label2">Password:</div> 
                            <input type="password" name="pwd" required /> </br>
                           <button type="submit" value="submit">Login</button> </br>
-                          <a class="link" href="">or Sign Up Here</a>
+                          <a class="link" href="http://localhost/CS4640-ztm4qv-kk6ev-project/templates/sign-up.php">or Sign Up Here</a>
                         </form>
                       </div>
                     </div>
@@ -112,8 +126,48 @@
             </div>
         </div>
 
-<!-- Must connect to the DB -->
-<?php require('connect-db.php'); ?> 
+<?php
+  if($_SERVER['REQUEST_METHOD'] == 'POST'){
+    // clean white space
+    $email = trim($_POST['email']);
+    $pwd = trim($_POST['pwd']);
+
+    // prepare SQL statement - protects against SQL injection
+    if($query = $db->prepare('SELECT * FROM users WHERE email = :email')){
+      $query->bindValue(':email', $email);
+      $query->execute();
+
+      $results = $query->fetch();
+      $id = $results[0]; 
+      $email = $results[1]; 
+      $password_hashed = $results[2];
+      $first_name = $results[3];
+      $last_name = $results[4];
+      $year = $results[5];
+
+      // account exists, now we verify the password
+      if(password_verify($pwd, $password_hashed)){
+        // verifcation success, user has loggedin
+        // create sessions so we know the user is logged in, they basically act like cookies but remember the data on the server
+        session_regenerate_id();
+        $_SESSION['loggedin'] = TRUE;
+        $_SESSION['id'] = $id;
+        $_SESSION['email'] = $email;
+        $_SESSION['pwd'] = $pwd;
+        $_SESSION['first_name'] = $first_name;
+        $_SESSION['last_name'] = $last_name;
+        $_SESSION['year'] = $year;
+        header('Location: http://localhost/CS4640-ztm4qv-kk6ev-project/templates/homepage-after-login.php');
+      }
+      else{
+        echo 'Incorrect password!';
+      }
+    }
+    else{
+      echo 'Incorrect username!';
+    }
+  }
+?>
 
 </body>
 </html>
