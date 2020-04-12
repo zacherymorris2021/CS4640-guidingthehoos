@@ -63,7 +63,7 @@
 
     <!-- Slide show -->
     <section>
-      <img class="my-pics img-details" src="http://localhost/CS4640-ztm4qv-kk6ev-project/images/pic-1.jpg" >
+      <img class="my-pics img-details" src="http://localhost/CS4640-ztm4qv-kk6ev-project/images/pic1.jpg" >
       <img class="my-pics img-details" src="http://localhost/CS4640-ztm4qv-kk6ev-project/images/pic-2.png" >
       <br><br>
     </section>
