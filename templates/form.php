@@ -15,7 +15,12 @@
 <body>
 
     <!-- Must connect to the DB -->
-    <?php require('../connect-db.php'); ?> 
+    <?php 
+    include('../connect-db.php');
+    require('../connect-db.php');
+    require('../todo-db.php');
+    ?> 
+    
 
     <!-- nav bar:
         1. Logo: small-logo.png
@@ -48,8 +53,8 @@
 
     <div class="container">
         <br>
-        <form name="RegisterForm" action="" method="post">
-            <div class="section"><span>1</span>Personal Information</div>
+        <form name="RegisterForm" action="<?php $_SERVER['PHP_SELF'] ?>" method="POST"  enctype="multipart/form-data">
+            <!-- <div class="section"><span>1</span>Personal Information</div>
             <p><em> Disclaimer: This info will be made available on this site</em></p>
             <div class="inner-section">
                 <label>Your First Name: <input type="text" id="firstname" placeholder="John" autofocus="" /></label>
@@ -58,85 +63,156 @@
                 <p class="error_message" id="msg_num4" style="color: red;"></p>
                 <label>Email Address: <input type="text" id ="emailholder" placeholder = "abc123@virginia.edu" pattern=".+@virginia.edu" required /></label>
                 <p class="error_message" id="msg_num2" style="color: red;"></p>
-            </div>
+            </div> -->
         
-            <div class="section"><span>2</span>Organization Information</div>
+            <div class="section"><span>1</span>Organization Information</div>
             <div class="inner-section">
-                <label>Organization Name: <input type="text" id="org_name" placeholder="Organization"/></label>
-                <p class="error_message" id="msg_num5" style="color: red;"></p>
+                <label>Organization Name:</label> 
+                <input type="text" name="org_name" id="org_name" placeholder="Organization" />
+                <span class="msg"><?php if(isset($_POST['org_name'])&& (($_POST['org_name']) == NULL) ) echo "Please enter the organization name <br />";?></span>
+                <!-- <p class="error_message" id="msg_num5" style="color: red;"></p> -->
+                <br>
                 <label>Weekly Meeting:
                     <div class="weekDays"> <br>
                         <!-- Monday with time dispaly -->
-                        <label><input type="checkbox" id="monday" class="weekday" onclick= "myFunction('conditionalM')"/> Monday</label>
+                        <label><input type="checkbox" id="monday" class="weekday" name = "Days[]" value = "Monday" onclick= "myFunction('conditionalM')"/> Monday</label>
                             <div id="conditionalM" style="display:none">
                                 <label for="meetT">Choose a Meeting Time: </label>
-                                <input id="meetT" type="time" placeholder="11:59"> <br>  <br>
+                                <input id="meetT" type="time" name= "times[]" placeholder="11:59"> <br>  <br>
                             </div>
                         <!-- Tuesday with time dispaly -->
-                        <label><input type="checkbox" id="tuesday" class="weekday" onclick= "myFunction('conditionalT')"/> Tuesday</label>
+                        <label><input type="checkbox" id="tuesday" class="weekday" name = "Days[]" value = "Tuesday" onclick= "myFunction('conditionalT')"/> Tuesday</label>
                             <div id="conditionalT" style="display:none">
                                 <label for="meetT">Choose a Meeting Time: </label>
-                                <input id="meetT" type="time"  placeholder="11:59"> <br> <br> 
+                                <input id="meetT" type="time" name= "times[]" placeholder="11:59"> <br> <br> 
                             </div>
                         <!-- Wednesday with time dispaly -->
-                        <label><input type="checkbox" id="wednesday" class="weekday" onclick= "myFunction('conditionalw')"/> Wednesday</label>
+                        <label><input type="checkbox" id="wednesday" class="weekday" name = "Days[]" value = "Wednesday" onclick= "myFunction('conditionalw')"/> Wednesday</label>
                             <div id="conditionalw" style="display:none">
                                 <label for="meetT">Choose a Meeting Time: </label>
-                                <input id="meetT" type="time" placeholder="11:59"> <br>  <br>
+                                <input id="meetT" type="time" name= "times[]" placeholder="11:59"> <br>  <br>
                             </div>
                         <!-- Thursday with time display -->
-                        <label><input type="checkbox" id="thursday" class="weekday" onclick= "myFunction('conditionalTH')"/> Thursday</label>
+                        <label><input type="checkbox" id="thursday"  name = "Days[]" class="weekday" value = "Thursday" onclick= "myFunction('conditionalTH')"/> Thursday</label>
                             <div id="conditionalTH" style="display:none">
                                 <label for="meetT">Choose a Meeting Time: </label>
-                                <input id="meetT" type="time" placeholder="11:59"> <br>  <br>
+                                <input id="meetT" type="time" name= "times[]" placeholder="11:59"> <br>  <br>
                             </div>
                         <!-- Friday with time dispaly -->
-                        <label><input type="checkbox" id="friday" class="weekday" onclick= "myFunction('conditionalF')"/> Friday</label>
+                        <label><input type="checkbox" id="friday" class="weekday" name = "Days[]" value = "Friday" onclick= "myFunction('conditionalF')"/> Friday</label>
                             <div id="conditionalF" style="display:none">
                                 <label for="meetT">Choose a Meeting Time: </label>
-                                <input id="meetT" type="time" placeholder="11:59"> <br><br>  
+                                <input id="meetT" type="time" name= "times[]" placeholder="11:59"> <br><br>  
                             </div>
                         <!-- Saturday with time display -->
-                        <label><input type="checkbox" id="saturday" class="weekday" onclick= "myFunction('conditionalST')" /> Saturday</label>
+                        <label><input type="checkbox" id="saturday" name = "Days[]" class="weekday" value = "Saturday" onclick= "myFunction('conditionalST')" /> Saturday</label>
                             <div id="conditionalST" style="display:none">
                                 <label for="meetT">Choose a Meeting Time:</label>
-                                <input id="meetT" type="time" placeholder="11:59"> <br>  <br>
+                                <input id="meetT" type="time" name= "times[]" placeholder="11:59"> <br>  <br>
                             </div>
                          <!-- Sunday with time display -->
-                        <label><input type="checkbox" id="sunday" class="weekday" onclick= "myFunction('conditionalSU')"/> Sunday</label>
+                        <label><input type="checkbox" id="sunday" name = "Days[]" class="weekday" value = "Sunday" onclick= "myFunction('conditionalSU')"/> Sunday</label>
                             <div id="conditionalSU" style="display:none">
                                 <label for="meetT">Choose a Meeting Time: </label>
-                                <input id="meetT" type="time" placeholder="11:59"> <br><br>  
+                                <input id="meetT" type="time" name= "times[]" placeholder="11:59"> <br><br>  
                             </div>
                       </div>
                 </label>
-                <label>Dues <input type="text" placeholder="100" id ="dues" /></label>
-                <p class="error_message" id="msg_num1" style="color: red;"></p>
-                <label>Location<input type="text" name="field4" placeholder = "120 Olsson Hall" /></label>
-                <label>About<input type="text" name="field5" placeholder = "About your organization" /></label>
-                <label>Do you want to include an image? <input type="file" id = "picupload" ></label>
+                <label>Dues </label><input type="text" placeholder="100" name= "dues" id ="dues" />
+                <span class="msg"><?php if((isset($_POST['dues'])) && is_numeric($_POST['dues']) == FALSE) echo "Please give a number for dues. <br />";?><br></span>
+                <label>Location <input type="text" name="locations" placeholder = "120 Olsson Hall" /> </label>
+                <label>About<input type="text" name="about" onkeyup="countChar(this)" placeholder = "About your organization" id = "message" /></label>
+                <div class = "help" id="charNum"></div>
+                <span class="msg"> <?php if(isset($_POST['about'])&& (($_POST['about']) == NULL) ) echo "Please give information about your organization <br />";?></span>
+                <br>
+                <label>Do you want to include an image?<br>
+                <input type="file" name ="uploadfile" id = "picupload" /></label>
+                
             </div>
-            <div class="button">
-                <button type="button" class = "btn btn-primary" id="Submit" onclick="Rightinfo()" >Submit</button>
+            <!-- <div class="button">
+                <button type="button" name ="submit" class = "btn btn-primary" id="Submit" onclick="Rightinfo()" >Submit</button>
                 <p id="demo"></p>
-            </div>
-            <br>
-            
+            </div> -->
+            <!-- <br>
+  -->
+            <input type="submit" name="submit2" value="Submit" />
         </form>
         </div>
-    </body>  
+        <script type="text/javascript">
+  function redirect(){
+    window.location.href = 'http://localhost/CS4640-ztm4qv-kk6ev-project/templates/organizations.php';
+  }
+</script>
+<?php
+    error_reporting(0);
+        $name_msg = NULL;
+        $name = NULL;
+       if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if(isset($_POST['submit2'])){
+            if(($_POST['org_name']) != NULL){
+                $org_name = ($_POST['org_name']);
+            }
+            //if(($_POST['dues']) != NULL){
+                $dues = $_POST['dues'];
+            //}
+            $locations = $_POST['locations'];
+            if(($_POST['about']) != NULL){
+                $about = $_POST['about'];
+            }
+            //if(isset($_POST['Days'])){
+                $checkbox = $_POST['Days'];
+                $chk="";   
+                foreach($checkbox as $chk1){   
+                    $chk .= $chk1."/"; // so we can EXPLODE the values which only works with / https://stackoverflow.com/questions/47640313/phpmyadmin-multiple-values-in-one-column
+                }  
+            //}
+        
+        
+        if(isset($_POST['times'])){ //name= "times[]"
+            $timebox = $_POST['times'];
+            $tbox="";   
+            foreach($timebox as $tbox1){   
+                $tbox .= $tbox1."/";
+        }
+       }
+    //    if(isset($_POST["file_name"])) {
+        $filename = $_FILES["uploadfile"]["name"];
+        $filetmpname = $_FILES["uploadfile"]["tmp_name"];
+        $folder = "../uploadedimages/";
+        move_uploaded_file($filetmpname, $folder.$filename);
+        addTask($org_name, $dues, $locations,$about,$chk,$tbox,$filename);
+        if((($_POST['about']) != NULL && ($_POST['org_name']) != NULL && is_numeric($_POST['dues']) == TRUE)){
+        echo '<script type="text/javascript">',
+                'redirect();',
+                '</script>';
+    }
+}
+}
+?>
 
+    </body> 
+    <script src="http://code.jquery.com/jquery-1.5.js"></script> 
+<script>
+function countChar(val){
+     var len = val.value.length;
+     if (len >= 250) {
+              val.value = val.value.substring(0, 250);
+     } else {
+              $('#charNum').text(250 - len + " characters left");
+     }
+};
+</script>
 <script>
     // id = 
-document.getElementById("Submit").addEventListener("click", displaydone);
-var SubmitDate = () =>{
-    return " Date: " + Date();
-}
-var displaydone = function(){
-    document.getElementById("demo").innerHTML = SubmitDate();
-}
-displaydone();
-// puts in the time for when a day is checked
+// document.getElementById("Submit").addEventListener("click", displaydone);
+// var SubmitDate = () =>{
+//     return " Date: " + Date();
+// }
+// var displaydone = function(){
+//     document.getElementById("demo").innerHTML = SubmitDate();
+// }
+// displaydone();
+// // puts in the time for when a day is checked
 function myFunction(id) {
        var a = document.getElementById(id);
        if(a.style.display == 'block')
@@ -146,47 +222,47 @@ function myFunction(id) {
     }
     // checks if there is an error and if there is not it submits it
 function Rightinfo(){
-    var x,text;
-    x=document.getElementById("dues").value;
-    if(isNaN(x)){
-        text = "Enter a number";
-    }
-    else{
-        text="";
-    }
-    document.getElementById("msg_num1").innerHTML = text;
-    var y,text2;
-    y = document.getElementById("emailholder").value;
-    if(y.endsWith("@virginia.edu")){
-        text2 = "wins";
-    }
-    else{
-        text2= "Please enter your @virginia.edu email";
-    }
-    document.getElementById("msg_num2").innerHTML = text2;
-    var letters = /^[A-Za-z]+$/;
-    var z = document.getElementById("firstname").value;
-    if(z.match(letters)){
-        text3="";
-    }
-    else{
-        text3 = "Please write only letters for your name";
-    }
-    document.getElementById("msg_num3").innerHTML = text3;
-    var last,text4;
-    var last = document.getElementById("lastname").value;
-    if(last.match(letters)){
-        text4="";
-    }
-    else{
-        text4 = "Please write only letters for your name";
-    }
-    document.getElementById("msg_num4").innerHTML = text4;
-    var text5;
-    var orgname= document.getElementById("org_name").value;
-    if(orgname.length == 0){
-        text5 = "Enter the name of your organization"
-    }
+    // var x,text;
+    // x=document.getElementById("dues").value;
+    // if(isNaN(x)){
+    //     text = "Enter a number";
+    // }
+    // else{
+    //     text="";
+    // }
+    // document.getElementById("msg_num1").innerHTML = text;
+    // var y,text2;
+    // y = document.getElementById("emailholder").value;
+    // if(y.endsWith("@virginia.edu")){
+    //     text2 = "wins";
+    // }
+    // else{
+    //     text2= "Please enter your @virginia.edu email";
+    // }
+    // document.getElementById("msg_num2").innerHTML = text2;
+    // var letters = /^[A-Za-z]+$/;
+    // var z = document.getElementById("firstname").value;
+    // if(z.match(letters)){
+    //     text3="";
+    // }
+    // else{
+    //     text3 = "Please write only letters for your name";
+    // }
+    // document.getElementById("msg_num3").innerHTML = text3;
+    // var last,text4;
+    // var last = document.getElementById("lastname").value;
+    // if(last.match(letters)){
+    //     text4="";
+    // }
+    // else{
+    //     text4 = "Please write only letters for your name";
+    // }
+    // document.getElementById("msg_num4").innerHTML = text4;
+    // var text5;
+    // var orgname= document.getElementById("org_name").value;
+    // if(orgname.length == 0){
+    //     text5 = "Enter the name of your organization"
+    // }
     document.getElementById("msg_num5").innerHTML = text5;  
     
     var frm = document.getElementsByName('RegisterForm')[0];
@@ -197,6 +273,10 @@ function Rightinfo(){
 </script>
 
 <style>
+.msg {
+	  font-style: italic;
+	  color: red;
+    }
     /* changed the bootstrap button */
 .btn-primary:hover {
     background-color: rgb(66, 184, 20) !important;
@@ -227,6 +307,7 @@ p{
     font-size: 90%;
     font-family: sans-serif;
     margin-bottom: 15px;
+    color: #0B3F72;
 }
 .container input[type="text"] { /*looks at the input type text*/
 	display: block;
@@ -241,7 +322,7 @@ p{
 
 .container .section{
 	font: normal 20px, serif;
-	color: #1981DE; 
+	color: #2D95EA; 
 	margin-bottom: 10px;
 }
 .container .section span {/* sets the number*/
