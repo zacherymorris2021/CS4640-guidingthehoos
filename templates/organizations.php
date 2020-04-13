@@ -18,8 +18,78 @@
 
   <body>
 
-  <!-- Must connect to the DB -->
+  <!-- must connect to the DB -->
   <?php require('../connect-db.php'); ?> 
+
+  <!-- check if user has session -->
+  <?php
+      // We need to use sessions, so you should always start sessions using the below code.
+      session_start();
+      // If the user is not logged in redirect to the login page...
+      if (!isset($_SESSION['loggedin'])) {
+        header('Location: http://localhost/CS4640-ztm4qv-kk6ev-project/index.php');
+        exit;
+      }
+  ?>
+
+  
+<style>
+    /* Navigation bar */
+    .nav-item a:hover {
+      color: rgb(255, 255, 255) !important;
+      cursor: pointer;
+    }
+
+    .navbar-nav a:hover{
+      background-color: #0B3F72;
+      color: #000000;
+    }
+
+    .navbar-nav li {
+      font-family: "Open Sans", sans-serif;
+      font-size: 1em;
+      line-height: 30px;
+      padding-right: 3px;
+      padding-left: 3px;
+    }
+
+    .navbar-nav a {
+      text-decoration: none !important;
+      color: lightgrey!important;
+      display: block;
+      transition: .3s background-color;
+    }
+
+    .navbar-nav a.active {
+      background-color: #0B3F72 !important;
+      cursor: default;
+    }
+
+    .navbar-nav li.active{
+      background-color: #0B3F72 !important;
+      cursor: default;
+    }
+
+    /* Slideshow */
+    .img-details{
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 50%;
+    }
+
+    .footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #343A40;
+    color: white;
+    text-align: center;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    }
+  </style>
 
     <!-- Navigation bar -->
 
@@ -31,13 +101,11 @@
                 <li class="nav-item"><a class="nav-link" href="http://localhost/CS4640-ztm4qv-kk6ev-project/templates/form.php">Add Organization</a></li>
             </ul>
             <ul class="navbar-nav navbar-right">
-            <li class="nav-item" style="padding-top:3.5px">
-            <form action="" method = "GET" style="padding-right: 10px">
-                <input width=align="right" class="form-control" type ="text" name= 'q' placeholder="Search Website..." value = "">
-            </form>
+            <li class="nav-item">
+              <a class="nav-link" href="profile.php"><?php echo $_SESSION['first_name'] . "'s Profile";?> </a>
             </li>
                 <li class="nav-item">
-                <a class="nav-link" href="../index.php" onclick="signOut();">Sign out</a>
+                <a class="nav-link" href="logout.php">Sign out</a>
                 </li>
             </ul>
         </nav>
@@ -105,62 +173,4 @@
         <a href="#"><i class="fa fa-linkedin"></i></a>
       </footer>
     </body>
-
-  <style>
-    /* Navigation bar */
-    .nav-item a:hover {
-      color: rgb(255, 255, 255) !important;
-      cursor: pointer;
-    }
-
-    .navbar-nav a:hover{
-      background-color: #0B3F72;
-      color: #000000;
-    }
-
-    .navbar-nav li {
-      font-family: "Open Sans", sans-serif;
-      font-size: 1em;
-      line-height: 30px;
-      padding-right: 3px;
-      padding-left: 3px;
-    }
-
-    .navbar-nav a {
-      text-decoration: none !important;
-      color: #fff;
-      display: block;
-      transition: .3s background-color;
-    }
-
-    .navbar-nav a.active {
-      background-color: #0B3F72 !important;
-      cursor: default;
-    }
-
-    .navbar-nav li.active{
-      background-color: #0B3F72 !important;
-      cursor: default;
-    }
-
-    /* Slideshow */
-    .img-details{
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-      width: 50%;
-    }
-
-    .footer {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: #343A40;
-    color: white;
-    text-align: center;
-    padding-top: 7px;
-    padding-bottom: 7px;
-    }
-  </style>
 </html>

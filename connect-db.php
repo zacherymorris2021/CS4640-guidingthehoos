@@ -1,4 +1,5 @@
 <?php
+
 $hostname='localhost:3306'; // port number 3306 - got from xammp
 $dbname='guiding'; // type localhost in broswer - user=web4640 pass=5833683ztm
 $username="katz";

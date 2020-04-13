@@ -21,54 +21,18 @@
     <!-- Must connect to the DB -->
     <?php require('../connect-db.php'); ?> 
 
-    <!-- Navigation bar -->
-    <section>
-      <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-          <ul class="navbar-nav mr-auto navbar-left">
-              <li class="navbar-brand"><img src="../images/small-logo.png" height="30" class="d-inline-block align-top" alt=""></li>
-              <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
-              <li class="nav-item"><a class="nav-link" href="http://localhost/CS4640-ztm4qv-kk6ev-project/templates/organizations.php">Organizations</a></li>
-              <li class="nav-item"><a class="nav-link" href="http://localhost/CS4640-ztm4qv-kk6ev-project/templates/form.php">Add Organization</a></li>
-          </ul>
-          <ul class="navbar-nav navbar-right">
-            <li class="nav-item" style="padding-top:3.5px">
-            <form action="" method = "GET" style="padding-right: 10px">
-                <input width=align="right" class="form-control" type ="text" name= 'q' placeholder="Search Website..." value = "">
-            </form>
-          </li>
-              <li class="nav-item">
-                <a class="nav-link" href="../index.php" onclick="signOut();">Sign out</a>
-              </li>
-          </ul>
-      </nav>
-    </section>
+    <!-- check if user has session -->
+    <?php
+      // We need to use sessions, so you should always start sessions using the below code.
+      session_start();
+      // If the user is not logged in redirect to the login page...
+      if (!isset($_SESSION['loggedin'])) {
+        header('Location: http://localhost/CS4640-ztm4qv-kk6ev-project/index.php');
+        exit;
+      }
+    ?>
 
-    <!-- Website description -->
-    <section class="edit-container edit-center edit-content" style="max-width:600px">
-      <br><br>
-      <h2 class="edit-wide">Guiding the Hoos</h2>
-      <p class="edit-opacity"><i>We love Grounds and want others to express their opinions!</i></p>
-      <p class="edit-justify">We have created an informational website about organizations, food places, and study spots around Grounds. Guiding the Hoos is made for UVA students that need recommendations for clubs to join, best study spots, and the tastiest food locations! Users can submit and view these different categories to make more well informed decisons.</p>
-    </section>
-
-    <!-- Slide show -->
-    <section>
-      <img class="my-pics img-details" src="http://localhost/CS4640-ztm4qv-kk6ev-project/images/pic-1.jpg" >
-      <img class="my-pics img-details" src="http://localhost/CS4640-ztm4qv-kk6ev-project/images/pic-2.png" >
-      <br><br>
-    </section>
-
-    <!-- Footer -->
-    <footer class=" footer">
-      <a href="#"><i class="fa fa-facebook-official"></i></a>
-      <a href="#"><i class="fa fa-pinterest-p"></i></a>
-      <a href="#"><i class="fa fa-twitter"></i></a>
-      <a href="#"><i class="fa fa-flickr"></i></a>
-      <a href="#"><i class="fa fa-linkedin"></i></a>
-    </footer>
-  </body>
-
-  <style>
+<style>
     /* Navigation bar */
     .nav-item a:hover {
       color: rgb(255, 255, 255) !important;
@@ -90,7 +54,7 @@
 
     .navbar-nav a {
       text-decoration: none !important;
-      color: #fff;
+      color: lightgrey!important;
       display: block;
       transition: .3s background-color;
     }
@@ -111,6 +75,7 @@
       margin-left: auto;
       margin-right: auto;
       width: 50%;
+      border-radius:10px;
     }
 
     /* Website description */
@@ -121,7 +86,8 @@
       text-align:center!important
     }
     .edit-content{
-      max-width:980px;margin:auto
+      max-width:980px;
+      margin:auto
     }
     .edit-wide{
       font-family:"Segoe UI",Arial,sans-serif;
@@ -148,6 +114,52 @@
         letter-spacing: 20px;
       }
   </style>
+
+    <!-- Navigation bar -->
+    <section>
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+          <ul class="navbar-nav mr-auto navbar-left">
+              <li class="navbar-brand"><img src="../images/small-logo.png" height="30" class="d-inline-block align-top" alt=""></li>
+              <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+              <li class="nav-item"><a class="nav-link" href="http://localhost/CS4640-ztm4qv-kk6ev-project/templates/organizations.php">Organizations</a></li>
+              <li class="nav-item"><a class="nav-link" href="http://localhost/CS4640-ztm4qv-kk6ev-project/templates/form.php">Add Organization</a></li>
+          </ul>
+
+          <ul class="navbar-nav navbar-right">
+            <li class="nav-item">
+              <a class="nav-link" href="profile.php"><?php echo $_SESSION['first_name'] . "'s Profile";?> </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="logout.php">Sign out</a>
+            </li>
+          </ul>
+      </nav>
+    </section>
+
+    <!-- Website description -->
+    <section class="edit-container edit-center edit-content" style="max-width:600px">
+      <br><br>
+      <h2 class="edit-wide">Guiding the Hoos</h2>
+      <p class="edit-opacity"><i>We love Grounds and want others to express their opinions!</i></p>
+      <p class="edit-justify">We have created an informational website about organizations and clubs around Grounds. Guiding the Hoos is made for UVA students that need recommendations for student councils, greek life, and club sports - which just hits the surface of what we provide! A user can submit and view organizations, in hope to guide Hoos through a thoughful decsion making process! </p>
+    </section>
+
+    <!-- Slide show -->
+    <section>
+      <img class="my-pics img-details" src="http://localhost/CS4640-ztm4qv-kk6ev-project/images/pic1.jpg" >
+      <img class="my-pics img-details" src="http://localhost/CS4640-ztm4qv-kk6ev-project/images/pic-2.png" >
+      <br><br>
+    </section>
+
+    <!-- Footer -->
+    <footer class=" footer">
+      <a href="#"><i class="fa fa-facebook-official"></i></a>
+      <a href="#"><i class="fa fa-pinterest-p"></i></a>
+      <a href="#"><i class="fa fa-twitter"></i></a>
+      <a href="#"><i class="fa fa-flickr"></i></a>
+      <a href="#"><i class="fa fa-linkedin"></i></a>
+    </footer>
+  </body>
 
   <script>
     // Slideshow - image change's every 4 seconds
