@@ -21,35 +21,33 @@
     require('../todo-db.php');
     ?> 
     
+    <?php
+      // We need to use sessions, so you should always start sessions using the below code.
+      session_start();
+      // If the user is not logged in redirect to the login page...
+      if (!isset($_SESSION['loggedin'])) {
+        header('Location: http://localhost/CS4640-ztm4qv-kk6ev-project/index.php');
+        exit;
+      }
+  ?>
 
-    <!-- nav bar:
-        1. Logo: small-logo.png
-        2. Study Spots
-        3. Food Places
-        4. Organization
-        Right side
-        1. Search bar
-        2. Profile
-        3. Sign out-->
-        <!-- Navigation bar -->
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-            <ul class="navbar-nav mr-auto navbar-left">
-                <li class="navbar-brand"><img src="../images/small-logo.png" height="30" class="d-inline-block align-top" alt=""></li>
-                <li class="nav-item"><a class="nav-link" href="http://localhost/CS4640-ztm4qv-kk6ev-project/templates/homepage-after-login.php">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="http://localhost/CS4640-ztm4qv-kk6ev-project/templates/organizations.php">Organizations</a></li>
-                <li class="nav-item"><a class="nav-link active" href="#">Add Organization</a></li>
-            </ul>
-            <ul class="navbar-nav navbar-right">
-            <li class="nav-item" style="padding-top:3.5px">
-            <form action="" method = "GET" style="padding-right: 10px">
-                <input width=align="right" class="form-control" type ="text" name= 'q' placeholder="Search Website..." value = "">
-            </form>
+    <!-- nav bar -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <ul class="navbar-nav mr-auto navbar-left">
+            <li class="navbar-brand"><img src="../images/small-logo.png" height="30" class="d-inline-block align-top" alt=""></li>
+            <li class="nav-item"><a class="nav-link" href="http://localhost/CS4640-ztm4qv-kk6ev-project/templates/homepage-after-login.php">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="http://localhost/CS4640-ztm4qv-kk6ev-project/templates/organizations.php">Organizations</a></li>
+            <li class="nav-item"><a class="nav-link active" href="#">Add Organization</a></li>
+        </ul>
+        <ul class="navbar-nav navbar-right">
+            <li class="nav-item">
+                <a class="nav-link" href="profile.php"><?php echo $_SESSION['first_name'] . "'s Profile";?> </a>
             </li>
-                <li class="nav-item">
-                <a class="nav-link" href="../index.php" onclick="signOut();">Sign out</a>
-                </li>
-            </ul>
-        </nav>
+            <li class="nav-item">
+                <a class="nav-link" href="logout.php">Sign out</a>
+            </li>
+        </ul>
+    </nav>
 
     <div class="container">
         <br>
@@ -181,6 +179,9 @@
         $folder = "../uploadedimages/";
         move_uploaded_file($filetmpname, $folder.$filename);
         addTask($org_name, $dues, $locations,$about,$chk,$tbox,$filename);
+
+        
+
         if((($_POST['about']) != NULL && ($_POST['org_name']) != NULL && is_numeric($_POST['dues']) == TRUE)){
         echo '<script type="text/javascript">',
                 'redirect();',

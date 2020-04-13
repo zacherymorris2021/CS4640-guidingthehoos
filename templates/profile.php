@@ -96,14 +96,15 @@
         border: none;
         outline: 0;
         display: inline-block;
-        padding: 8px;
+        padding: 4px;
         color: white;
         background-color: #0B3F72;
         text-align: center;
         cursor: pointer;
-        width: 75%;
+        width: 60%;
         font-size: 18px;
         margin:auto;
+        border-radius:5px;
       }
 
       button:hover {

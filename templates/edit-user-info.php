@@ -96,7 +96,7 @@
         border: none;
         outline: 0;
         display: inline-block;
-        padding: 8px;
+        padding: 4px;
         color: white;
         background-color: #0B3F72;
         text-align: center;
@@ -104,6 +104,7 @@
         width: 65%;
         font-size: 18px;
         margin:auto;
+        border-radius:5px;
       }
 
       button:hover {
@@ -240,6 +241,7 @@
                     $_SESSION['pwd'] = $p;
                 }
                 else{
+                    $pwd = password_hash($p, PASSWORD_BCRYPT);
                     $query->bindValue('pwd', $_SESSION['pwd']);
                 }
                 if($f != NULL){

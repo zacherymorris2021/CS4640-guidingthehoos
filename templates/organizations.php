@@ -69,26 +69,6 @@
       background-color: #0B3F72 !important;
       cursor: default;
     }
-
-    /* Slideshow */
-    .img-details{
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-      width: 50%;
-    }
-
-    .footer {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: #343A40;
-    color: white;
-    text-align: center;
-    padding-top: 7px;
-    padding-bottom: 7px;
-    }
   </style>
 
     <!-- Navigation bar -->
@@ -101,12 +81,12 @@
                 <li class="nav-item"><a class="nav-link" href="http://localhost/CS4640-ztm4qv-kk6ev-project/templates/form.php">Add Organization</a></li>
             </ul>
             <ul class="navbar-nav navbar-right">
-            <li class="nav-item">
-              <a class="nav-link" href="profile.php"><?php echo $_SESSION['first_name'] . "'s Profile";?> </a>
-            </li>
-                <li class="nav-item">
+              <li class="nav-item">
+                <a class="nav-link" href="profile.php"><?php echo $_SESSION['first_name'] . "'s Profile";?> </a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link" href="logout.php">Sign out</a>
-                </li>
+              </li>
             </ul>
         </nav>
 

@@ -141,7 +141,7 @@
       <br><br>
       <h2 class="edit-wide">Guiding the Hoos</h2>
       <p class="edit-opacity"><i>We love Grounds and want others to express their opinions!</i></p>
-      <p class="edit-justify">We have created an informational website about organizations and clubs around Grounds. Guiding the Hoos is made for UVA students that need recommendations for student councils, greek life, and club sports - which just hits the surface of what we provide! A user can submit and view organizations, in hope to guide Hoos through a thoughful decsion making process! </p>
+      <p class="edit-justify">We have created an informational website about organizations and clubs around Grounds. Guiding the Hoos is made for UVA students that need recommendations for student councils, greek life, and club sports - which just hits the surface of what we provide! A user can submit and view organizations, in hope to guide Hoos through a thoughful decision making process! </p>
     </section>
 
     <!-- Slide show -->

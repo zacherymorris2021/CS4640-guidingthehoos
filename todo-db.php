@@ -26,7 +26,7 @@ function addTask($org_name, $dues, $locations, $about,$chk,$tbox,$filename)
 	// since we skip task_id and let DBMS auto gen a running number,
 	// we need to specify the columns to insert values
 	
-	$query = "INSERT INTO `table5`(`org_name`,`days`,`times`, `dues`, `locations`, `about`,`file_name`) VALUES (:org_name,:chk,:tim, :dues, :locations ,:about,:filenames)";
+	$query = "INSERT INTO `table5`(`org_name`,`days`,`times`, `dues`, `locations`, `about`,`file_name`,`user_email`) VALUES (:org_name,:chk,:tim, :dues, :locations ,:about,:filenames,:email)";
 	//$query = "INSERT INTO table5 VALUES ('$_boxValue')";
 	//:org_name, :dues, :locations ,:about
 	$statement = $db->prepare($query);
@@ -37,6 +37,7 @@ function addTask($org_name, $dues, $locations, $about,$chk,$tbox,$filename)
     $statement->bindValue(':locations', $locations);
 	$statement->bindValue(':about', $about);
 	$statement->bindValue(':filenames', $filename);
+	$statement->bindValue(':email', $_SESSION['email']);
 	$statement->execute();     // if the statement is successfully executed, execute() returns true
 	// false otherwise
 	

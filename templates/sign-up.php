@@ -3,43 +3,27 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">  <!-- required to handle IE -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">  
-  <meta name="google-signin-client_id" content="590898294226-nmnlp76d4ki4ktaqnb90p9gvule455js.apps.googleusercontent.com">
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="/js/index.js"></script>
+
   <title>Guiding the Hoos</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="/css/homepage-after-login.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> 
 
   <style>
-    .text-edit1 {
-      font-weight: 750;
-      font-size: 20px;
-      color: rgb(11,63,114);
-      font-family:arial;
-    }
-
     .card{
-      height: 551px;
       width: 400px;
       border-width: 2px;
       border-color: rgba(255, 255, 255, 0.527);
       background-color: rgba(255, 255, 255, 0.700);
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      margin: auto;
+      text-align: center;
+      margin-top:5%;
     }
-
-    .adjust-card{
-      margin-left: 34%;
-      margin-top: -18px;
-    }
-
-    @media only screen (min-width: 900px) and (min-height:1200) {
-      .adjust-card{
-      margin-left: 40%;
-      margin-top: 20%;
-    } 
- }
 
     html, body {
         background: url(http://localhost/CS4640-ztm4qv-kk6ev-project/images/rotunda3.jpg) no-repeat center center fixed;
@@ -49,102 +33,73 @@
         background-size: cover;
     }
 
-    input, textarea, button {
-      display:inline-block;
-      font-family:arial;
-      margin: 5px 10px 5px 60px;
-      padding: 8px 12px 8px 12px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      box-sizing: border-box;
-      width: 90%;
-      font-size: small;
-    }
+    button {
+        border: none;
+        outline: 0;
+        display: inline-block;
+        color: white;
+        background-color: #0B3F72;
+        text-align: center;
+        cursor: pointer;
+        width: 45%;
+        font-size: 17px;
+        margin:auto;
+        border-radius:5px;
+      }
 
-    button[type=submit] {
-      font-family:arial;
-      font-size: 14px;
-      font-weight: 550;
-      padding:5px 15px; 
-      background:#0B3F72; 
-      border:0 none;
-      cursor:pointer;
-      border-radius: 5px; 
-      color:white;
-    }
-  
-    button[type=submit]:hover {
-      opacity:0.8;
-      box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
-    }
+      button:hover {
+        opacity:0.8;
+        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+      }
 
-    .label1 {
-      font-family:arial;
-      margin-left: -100px;
-      font-weight: 750;
-      font-size:14px;
-      color: rgb(11,63,114);
-    }
-
-    .label2 {
-      font-family:arial;
-      margin-left: -100px;
-      font-weight: 750;
-      font-size:14px;
-      color: rgb(11,63,114);
-    }
-
-    .label3 {
-      font-family:arial;
-      margin-left: -93px;
-      font-weight: 750;
-      font-size:14px;
-      color: rgb(11,63,114);
-    }
-
-    .label4 {
-      font-family:arial;
-      margin-left: -102px;
-      font-weight: 750;
-      font-size:14px;
-      color: rgb(11,63,114);
-    }
-
-    .label5 {
-      font-family:arial;
-      margin-left: -104px;
-      font-weight: 750;
-      font-size:14px;
-      color: rgb(11,63,114);
-    }
+    h1{
+        color: #0B3F72;
+        font-size:25px;
+      }
 
     .link {
-      font-family:arial;
-      margin-left: 95px;
+      margin-left: auto;
+      margin-right:auto;
       font-weight: 750;
+      font-size:15px;
+      color: #337AB7;
     }
 
-    img {
-        width: 70px;
-        padding-bottom: 10px;
+    img{
+      width:20%;
+      margin-left:auto;
+      margin-right:auto;
     }
 
-    .custom-select {
-      font-family: Arial;
-      margin-left: 60px;
-      width: 90%;
-      margin: 8px 12px 5px 60px;
-    }
+    hr {
+        color: #0B3F72; 
+        padding:0px;
+        margin:0px;
+        border: 0;
+        height: 1px;
+        background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+      }
 
-    .edit-margins{
-      margin-right:90px;
-      display:inline-block;
-    }
-    .link {
-      font-family:arial;
-      margin-left: 95px;
-      font-weight: 750;
-    }
+    .title1 {
+        color: #0B3F72;
+        font-size: 18px;
+        font-weight: 600;
+      }
+
+      .title2 {
+        color: #259DDD;
+        font-size: 18px;
+      }
+
+      .oneline{
+        display:inline;
+        padding: 5px;
+      }
+
+      .custom-select {
+        width: auto;
+        font-size:18px;
+      }
 
 </style>
 
@@ -153,45 +108,65 @@
 
 </head>
   <body>
-  <br><br>
-        <div class="adjust-card">
-            <div class="card">
-                <div class="card-body">
-                    <div style="text-align: center; padding-top:5%;">
-                        <img src="../images/small-logo.png" alt="Logo" style="margin-top:-28px;"><br>
-                        <p class="text-edit1">Welcome to Guiding the Hoos! </br> Create your account below!</p>
-                        <hr>
-                        <div class="edit-margins">
-                        <form action="<?php $_SERVER['PHP_SELF']?>" method="POST"> 
-                           <div class="label1" >First Name:</div> 
-                           <input type="text" name="first_name" required autofocus /> </br>
+  <section>
+  <form action="<?php $_SERVER['PHP_SELF']?>" method="POST"> 
+    <div class="card">
+      <img src="../images/small-logo.png" alt="Logo-small" style="padding-top:10px;">
 
-                           <div class="label2">Last Name:</div> 
-                           <input type="text" name="last_name" required /> </br>
+        <h1 style="padding-top:10px;padding-bottom:5px;">Welcome to Guiding the Hoos!<br>Create your account below!</h1>
+      
+      <hr>
 
-                           <div class="label3">Year at UVA:</div> 
-                           <select class="custom-select" name="years" required>
-                            <option value="">None</option>
-                            <option value="first">first</option>
-                            <option value="second">second</option>
-                            <option value="third">third</option>
-                            <option value="fourth">fourth</option>
-                          </select>
+      <div class="oneline" style="padding-top:15px;">
+        <span class="title1" >First Name:</span> 
+        <span class="title2">
+          <input type="text" name="first_name" required autofocus placeholder="John"/>
+        </span>
+      </div>
 
-                           <div class="label4">UVA Email:</div> 
-                           <input type="email" name="email" required /> </br>
+      <div class="oneline" style="">
+        <span class="title1" >Last Name:</span> 
+        <span class="title2">
+          <input type="text" name="last_name" required placeholder="Smith"/>
+        </span>
+      </div>
 
-                           <div class="label5">Password:</div> 
-                           <input type="password" name="pwd" required /> </br>
+      <div class="oneline" style="">
+        <span class="title1" >Email:</span> 
+        <span class="title2">
+          <input type="text" name="email" required placeholder="compID@virginia.edu"/>
+        </span>
+      </div>
 
-                          <button type="submit" value="submit">Sign up</button> </br>
-                          <a class="link" href="http://localhost/CS4640-ztm4qv-kk6ev-project/index.php">return to login</a>
-                        </form>
-                      </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+      <div class="oneline" style="">
+        <span class="title1" >Password:</span> 
+        <span class="title2">
+          <input type="text" name="pwd" required placeholder="password"/>
+        </span>
+      </div>
+      
+      <div class="oneline">
+        <span class="title1" >Year:</span> 
+        <span class="title2">
+          <select class="custom-select" name="years" required>
+            <option value="">None</option>
+            <option value="first">first</option>
+            <option value="second">second</option>
+            <option value="third">third</option>
+            <option value="fourth">fourth</option>
+          </select>
+        </span>
+      </div>
+
+      <div style="padding-top:15px;">
+            <button type="submit" value="submit">Sign up</button> </br>
+            <div style="padding-top:5px;"> </div>
+            <a class="link" href="http://localhost/CS4640-ztm4qv-kk6ev-project/index.php">return to login</a>
+          </div>
+          <div style="padding-top:10px;"> </div>
+    </div>
+  </form>
+  </section>
 
 <script type="text/javascript">
   function redirect(){
