@@ -47,9 +47,8 @@
             </ul>
             <ul class="navbar-nav navbar-right">
             <li class="nav-item" style="padding-top:3.5px">
-            <form action="" method = "GET" style="padding-right: 10px">
-                <input width=align="right" class="form-control" type ="text" name= 'q' placeholder="Search Website..." value = "">
-            </form>
+            <li class="nav-item">
+              <a class="nav-link" href="profile.php"><?php echo $_SESSION['first_name'] . "'s Profile";?> </a>
             </li>
                 <li class="nav-item">
                 <a class="nav-link" href="logout.php">Sign out</a>

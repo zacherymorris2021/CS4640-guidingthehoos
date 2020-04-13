@@ -172,10 +172,10 @@
                            <div class="label3">Year at UVA:</div> 
                            <select class="custom-select" name="years" required>
                             <option value="">None</option>
-                            <option value="first">First</option>
-                            <option value="second">Second</option>
-                            <option value="third">Third</option>
-                            <option value="fourth">Fourth</option>
+                            <option value="first">first</option>
+                            <option value="second">second</option>
+                            <option value="third">third</option>
+                            <option value="fourth">fourth</option>
                           </select>
 
                            <div class="label4">UVA Email:</div> 
@@ -200,7 +200,6 @@
 </script>
 
 <?php 
-  // check is the account with that email already exists
   if($_SERVER['REQUEST_METHOD'] == 'POST'){
     // remove white space
     $email = trim($_POST['email']);
@@ -213,9 +212,11 @@
       
         $query->bindValue(':email', $email);
         $query->execute();
+        
+        // Store the result so we can check if the account exists in the database.
         $data = $query->fetchAll();
 
-        // Store the result so we can check if the account exists in the database.
+        // check is the account with that email already exists
         if (count($data) > 0) {
           // Username already exists
           exit('Username exists, please choose another!'); // need to fix to show in form card

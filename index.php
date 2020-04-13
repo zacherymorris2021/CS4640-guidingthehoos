@@ -27,7 +27,7 @@
     }
 
     html, body {
-        background: url(http://localhost/CS4640-ztm4qv-kk6ev-project/images/rotunda3.jpg) no-repeat center center fixed;
+        /* background: url(http://localhost/CS4640-ztm4qv-kk6ev-project/images/rotunda3.jpg) no-repeat center center fixed; */
         -webkit-background-size: cover;
         -moz-background-size: cover;
         -o-background-size: cover;
@@ -154,6 +154,7 @@
         $_SESSION['id'] = $id;
         $_SESSION['email'] = $email;
         $_SESSION['pwd'] = $pwd;
+        $_SESSION['pwd_hashed'] = $password_hashed;
         $_SESSION['first_name'] = $first_name;
         $_SESSION['last_name'] = $last_name;
         $_SESSION['year'] = $year;
@@ -167,6 +168,7 @@
       echo 'Incorrect username!';
     }
   }
+  echo $_SESSION['pwd'];
 ?>
 
 </body>
