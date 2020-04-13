@@ -11,7 +11,7 @@ $dsn = "mysql:host=$hostname;dbname=$dbname";
 try
 {
     $db = new PDO($dsn, $username, $password);
-    echo "<p> You connected </p>";
+   // echo "<p> You connected </p>";
 }
 catch(PDOException $e)
 {
