@@ -70,7 +70,7 @@
       /* profile card */
       .card {
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-        max-width: 500px;
+        max-width: 550px;
         margin: auto;
         text-align: center;
         margin-top:5%;
@@ -78,13 +78,13 @@
 
       .title1 {
         color: #0B3F72;
-        font-size: 18px;
+        font-size: 20px;
         font-weight: 600;
       }
 
       .title2 {
         color: #259DDD;
-        font-size: 18px;
+        font-size: 20px;
       }
 
       .oneline{
@@ -101,17 +101,28 @@
         background-color: #0B3F72;
         text-align: center;
         cursor: pointer;
-        width: 100%;
+        width: 75%;
         font-size: 18px;
+        margin:auto;
       }
 
       button:hover {
-      opacity:0.8;
-      box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+        opacity:0.8;
+        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
       }
 
       h1{
         color: #0B3F72;
+        padding:7px;
+      }
+
+      hr {
+        color: #0B3F72; 
+        padding:0px;
+        margin:0px;
+        border: 0;
+        height: 1px;
+        background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
       }
 
 
@@ -141,25 +152,32 @@
     <!-- profile card -->
     <section>
       <div class="card">
-        <img src="img.jpg" style="width:100%">
+        <!-- <img src="img.jpg" style="width:100%"> -->
         <h1>Welcome to your profile!</h1>
-        <div class="oneline"> 
+
+        <hr>
+
+        <div class="oneline" style="padding-top:15px;"> 
           <span class="title1">First Name:</span> 
           <span class="title2"><?php echo $_SESSION['first_name'];?></span>
         </div>
+
         <div class="oneline"> 
           <span class="title1">Last Name:</span> 
           <span class="title2"><?php echo $_SESSION['last_name'];?></span>
         </div>
+
         <div class="oneline"> 
           <span class="title1">Email:</span> 
           <span class="title2"><?php echo $_SESSION['email'];?></span>
         </div>
-        <div class="oneline" style="padding-bottom:10px;"> 
+
+        <div class="oneline" style="padding-bottom:15px;"> 
           <span class="title1">Year:</span> 
           <span class="title2"><?php echo $_SESSION['year'];?></span>
         </div>
-        <button onclick="window.location.href = 'http://localhost/CS4640-ztm4qv-kk6ev-project/templates/edit-user-info.php';">Edit Info</button>
+
+        <button onclick="window.location.href = 'http://localhost/CS4640-ztm4qv-kk6ev-project/templates/edit-user-info.php';">Edit Info</button> <br>
       </div>
     </section>
 

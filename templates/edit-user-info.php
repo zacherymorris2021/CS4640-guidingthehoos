@@ -70,7 +70,7 @@
       /* profile card */
       .card {
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-        max-width: 550px;
+        max-width: 615px;
         margin: auto;
         text-align: center;
         margin-top:5%;
@@ -101,7 +101,7 @@
         background-color: #0B3F72;
         text-align: center;
         cursor: pointer;
-        width: 75%;
+        width: 65%;
         font-size: 18px;
         margin:auto;
       }
