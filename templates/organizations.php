@@ -19,7 +19,12 @@
   <body>
 
   <!-- must connect to the DB -->
-  <?php require('../connect-db.php'); ?> 
+  <?php 
+    include('../connect-db.php');
+    require('../connect-db.php');
+    require('../todo-db.php');
+    ?> 
+    
 
   <!-- check if user has session -->
   <?php
@@ -34,6 +39,11 @@
 
   
 <style>
+  img {
+    /* max-height: 180px; */
+    /* size:100%; */
+    width: 100%;
+  }
     /* Navigation bar */
     .nav-item a:hover {
       color: rgb(255, 255, 255) !important;
@@ -70,30 +80,10 @@
       cursor: default;
     }
 
-    /* Slideshow */
-    .img-details{
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-      width: 50%;
-    }
-
-    .footer {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: #343A40;
-    color: white;
-    text-align: center;
-    padding-top: 7px;
-    padding-bottom: 7px;
-    }
   </style>
+   <!-- Navigation bar -->
 
-    <!-- Navigation bar -->
-
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+   <nav class="navbar navbar-expand-md navbar-dark bg-dark">
             <ul class="navbar-nav mr-auto navbar-left">
                 <li class="navbar-brand"><img src="../images/small-logo.png" height="30" class="d-inline-block align-top" alt=""></li>
                 <li class="nav-item"><a class="nav-link" href="http://localhost/CS4640-ztm4qv-kk6ev-project/templates/homepage-after-login.php">Home</a></li>
@@ -109,6 +99,25 @@
                 </li>
             </ul>
         </nav>
+  <?php
+  //   if($query = $db->prepare('SELECT id, password FROM users WHERE email = :email')){
+      
+  // $query->bindValue(':email', $email);
+  // $query->execute();
+  $num_rows = 0;
+  $data = getAllTasks();
+  //for row in $data:
+  $num_rows =  count($data);
+  foreach($data as $row){
+   // echo "$row[1]";
+  }
+  $stmt = $db->query("SELECT * FROM `table5`");
+  while ($row = $stmt->fetch()) {
+    ?>
+<?php
+$dir = '../uploadedimages/';
+$filenames = scandir($dir);
+?>
 
     <!-- Cards -->
     <section style="padding-left: 14%;">
@@ -116,61 +125,28 @@
             <div class="tile job-bucket">
               <div class="front">
                 <div class="contents">
-                  <img src="http://localhost/CS4640-ztm4qv-kk6ev-project/images/esc1.png"/>
-                  <h3>ESC</h3>
-                  <p>"Engineering Student Council (ESC) is a Special Status Organization of the University of Virginia and the representative body for undergraduate students of the School of Engineering and Applied Science (SEAS). "</p>
+                  <img src="../uploadedimages/<?php echo ($row[6]); ?>" />
+                  <h3><?php echo $row['org_name']; ?></h3>
+                  <p><?php echo $row['about']; ?></p>
                 </div>
               </div>
               <div class="back">
-                <h3>Engineering Student Council</h3>
-                <a> Contact: Allison Horenburg (aav56@virginia.edu)</a>
-                <a> Meeting: Wednesday 19:00</a>
-                <a>Dues: $0</a>
-                <a>Location: Thornton Hall - Rodman Room</a>
-              </div>
-            </div>
-            <div class="tile job-bucket">
-              <div class="front">
-                <div class="contents">
-                  <img src="http://localhost/CS4640-ztm4qv-kk6ev-project/images/theta2.png"/>
-                  <h3>Theta Tau</h3>
-                  <p>"Theta Tau strives to promote professional development, service, and brotherhood among its memebers. Events are held throughout the semester to achieve this like food drives, challah for hunger, and a bake sale."</p>
-                </div>
-              </div>
-              <div class="back">
-                <h3>Theta Tau</h3>
-                <a> Contact: Eddie Moder (edv56@virginia.edu)</a>
-                <a> Meeting: Sunday 12:00</a>
-                <a>Dues: $250</a>
-                <a>Location: Thornton Hall - E316</a>
-              </div>
-            </div>
-            <div class="tile job-bucket">
-              <div class="front">
-                <div class="contents">
-                  <img src="http://localhost/CS4640-ztm4qv-kk6ev-project/images/shpe.jpeg"/>
-                  <h3>SPHE</h3>
-                  <p>"Our mission is to promote engineering in the Hispanic/Latino community through recruitment and retention, support diversity in the community, and encourage academic, and professional growth among our members."</p>
-                </div>
-              </div>
-              <div class="back">
-                <h3>SHPE</h3>
-                <a> Contact: Kathryn Waston (aerfc6@virginia.edu)</a>
-                <a> Meeting: Wednesday 13:00</a>
-                <a>Dues: $20</a>
-                <a>Location: Mech Bld</a>
+                <h3><?php echo $row['org_name']; ?></h3>
+                <a> Contact: <?php echo $row['user_email']; ?></a>
+                <?php $pieces = explode("/",$row['days']); ?>
+                <a> Meeting: <?php foreach ($pieces as $item){ echo "<li>$item"; }?></a>
+                <?php $times = explode("/",$row['times']); ?>
+                <?php $finaltimes =array_merge($pieces,$times);?>
+                <a> Tests: <?php foreach ($finaltimes as $item) { echo "$item"; }?></a>
+                <a> Times: <?php foreach ($times as $item) { echo "$item"; }?></a>
+                <a>Dues: <?php echo $row['dues']; ?></a>
+                <a>Location: <?php echo $row['locations']; ?></a>
               </div>
             </div>
           </div>
         </section>
+        <?php } ?>
 
-    <!-- Footer -->
-    <footer class=" footer">
-        <a href="#"><i class="fa fa-facebook-official"></i></a>
-        <a href="#"><i class="fa fa-pinterest-p"></i></a>
-        <a href="#"><i class="fa fa-twitter"></i></a>
-        <a href="#"><i class="fa fa-flickr"></i></a>
-        <a href="#"><i class="fa fa-linkedin"></i></a>
-      </footer>
+    
     </body>
 </html>

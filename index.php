@@ -168,7 +168,7 @@
       echo 'Incorrect username!';
     }
   }
-  echo $_SESSION['pwd'];
+ 
 ?>
 
 </body>

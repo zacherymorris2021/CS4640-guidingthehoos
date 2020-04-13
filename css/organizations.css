@@ -39,7 +39,9 @@ figure {
     padding: 0 20px;
   }
   img {
-    max-height: 130px;
+    max-height: 180px;
+    /* size:100%; */
+    /* width: 100%; */
   }
   .front {
     background: rgb(226, 226, 226);
