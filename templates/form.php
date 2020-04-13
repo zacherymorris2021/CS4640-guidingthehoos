@@ -14,9 +14,13 @@
 </head>
 <body>
 
-    <!-- must connect to the DB -->
-    <?php require('../connect-db.php'); ?> 
-
+    <!-- Must connect to the DB -->
+    <?php 
+    include('../connect-db.php');
+    require('../connect-db.php');
+    require('../todo-db.php');
+    ?>
+     
     <!-- check if user has session -->
     <?php
       // We need to use sessions, so you should always start sessions using the below code.
