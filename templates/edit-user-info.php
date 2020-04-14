@@ -31,6 +31,13 @@
     ?>
         
     <style>
+            html, body {
+      background: url(http://localhost/CS4640-ztm4qv-kk6ev-project/images/planeback3.png) no-repeat center center fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+    }
       /* Navigation bar */
       .nav-item a:hover {
       color: rgb(255, 255, 255) !important;
@@ -73,7 +80,7 @@
         max-width: 615px;
         margin: auto;
         text-align: center;
-        margin-top:5%;
+        margin-top:3%;
       }
 
       .title1 {
@@ -134,6 +141,18 @@
       .msg1 {
         font-style: italic;
         color: red;
+      }
+
+      /* footer */
+      footer {
+        position:fixed;
+        bottom: 0;
+        width: 100%;
+        height: 50px;
+        background-color: #343A40;
+        color:lightgrey;
+        text-align: center;
+        padding: 10px;
       }
     </style>
 
@@ -215,6 +234,10 @@
             </div>
         </form>
     </section>
+
+    <footer class="primary-footer bg-dark">
+        <small class="copyright">&copy; Guiding the Hoos</small>
+    </footer>
 
   </body>
 

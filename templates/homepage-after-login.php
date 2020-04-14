@@ -33,6 +33,26 @@
     ?>
 
 <style>
+    html, body {
+      background: url(http://localhost/CS4640-ztm4qv-kk6ev-project/images/planeback3.png) no-repeat center center fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+    }
+
+    .card{
+      width: 60%;
+      border-width: 2px;
+      border-color: rgba(255, 255, 255, 0.527);
+      background-color: rgba(255, 255, 255, 0.950);
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      margin: auto;
+      text-align: center;
+      height:100%;
+      margin-bottom:100%;
+    }
+
     /* Navigation bar */
     .nav-item a:hover {
       color: rgb(255, 255, 255) !important;
@@ -74,7 +94,7 @@
       display: block;
       margin-left: auto;
       margin-right: auto;
-      width: 50%;
+      width: 90%;
       border-radius:10px;
     }
 
@@ -100,19 +120,16 @@
       text-align:justify!important
     }
 
-    /* footer */
-    .footer {
-        position: relative;
-        left: 0;
-        bottom: 0;
-        width: 100%;
-        background-color: #343A40;
-        color: white;
-        text-align: center;
-        padding-top: 7px;
-        padding-bottom: 7px;
-        letter-spacing: 20px;
-      }
+    footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      height: 50px;
+      background-color: #343A40;
+      color:lightgrey;
+      text-align: center;
+      padding: 10px;
+    }
   </style>
 
     <!-- Navigation bar -->
@@ -137,19 +154,24 @@
     </section>
 
     <!-- Website description -->
+    <div class="card">
     <section class="edit-container edit-center edit-content" style="max-width:600px">
-      <br><br>
+      <br>
       <h2 class="edit-wide">Guiding the Hoos</h2>
       <p class="edit-opacity"><i>We love Grounds and want others to express their opinions!</i></p>
       <p class="edit-justify">We have created an informational website about organizations and clubs around Grounds. Guiding the Hoos is made for UVA students that need recommendations for student councils, greek life, and club sports - which just hits the surface of what we provide! A user can submit and view organizations, in hope to guide Hoos through a thoughful decision making process! </p>
     </section>
 
     <!-- Slide show -->
-    <section>
+    <section sytle="padding-bottom:20px;">
       <img class="my-pics img-details" src="http://localhost/CS4640-ztm4qv-kk6ev-project/images/pic1.jpg" >
-      <img class="my-pics img-details" src="http://localhost/CS4640-ztm4qv-kk6ev-project/images/pic-2.png" >
-      <br><br>
+      <img class="my-pics img-details" src="http://localhost/CS4640-ztm4qv-kk6ev-project/images/pic-2.png" >  
     </section>
+    </div>
+
+    <footer class="primary-footer bg-dark">
+        <small class="copyright">&copy; Guiding the Hoos</small>
+    </footer>
 
   </body>
 

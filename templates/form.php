@@ -136,6 +136,11 @@
             <input type="submit" name="submit2" value="Submit" />
         </form>
         </div>
+
+    <footer class="primary-footer bg-dark">
+        <small class="copyright">&copy; Guiding the Hoos</small>
+    </footer>
+
         <script type="text/javascript">
   function redirect(){
     window.location.href = 'http://localhost/CS4640-ztm4qv-kk6ev-project/templates/organizations.php';
@@ -274,6 +279,24 @@ function Rightinfo(){
 </script>
 
 <style>
+    html, body {
+      background: url(http://localhost/CS4640-ztm4qv-kk6ev-project/images/planeback3.png) no-repeat center center fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+    }
+    footer {
+      position:relative;
+      bottom: 0;
+      width: 100%;
+      height: 50px;
+      background-color: #343A40;
+      color:lightgrey;
+      text-align: center;
+      padding: 10px;
+    }
+
 .msg {
 	  font-style: italic;
 	  color: red;
@@ -358,7 +381,7 @@ p{
 
     .navbar-nav a {
       text-decoration: none !important;
-      color: #fff;
+      color: lightgrey!important;
       display: block;
       transition: .3s background-color;
     }

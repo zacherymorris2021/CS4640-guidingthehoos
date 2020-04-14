@@ -78,6 +78,17 @@
       background-color: #0B3F72 !important;
       cursor: default;
     }
+
+    footer {
+      position:fixed;
+      bottom: 0;
+      width: 100%;
+      height: 50px;
+      background-color: #343A40;
+      color:lightgrey;
+      text-align: center;
+      padding: 10px;
+    }
   </style>
 
     <!-- Navigation bar -->
@@ -152,5 +163,9 @@
             </div>
           </div>
         </section>
+
+        <footer class="primary-footer bg-dark">
+        <small class="copyright">&copy; Guiding the Hoos</small>
+        </footer>
     </body>
 </html>
