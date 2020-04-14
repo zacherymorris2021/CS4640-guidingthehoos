@@ -1,3 +1,4 @@
+<!-- Zachery Morris and Katharina Kemper -->
 <?php
     session_start();
     session_destroy();
