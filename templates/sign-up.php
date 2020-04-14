@@ -101,10 +101,21 @@
         font-size:18px;
       }
 
+      .msg1 {
+        font-style: italic;
+        color: red;
+      }
+
+
 </style>
 
 <!-- must connect to the DB -->
 <?php require('../connect-db.php'); ?> 
+
+<?php
+    session_start();
+    session_destroy();
+?>
 
 </head>
   <body>
@@ -120,35 +131,42 @@
       <div class="oneline" style="padding-top:15px;">
         <span class="title1" >First Name:</span> 
         <span class="title2">
-          <input type="text" name="first_name" required autofocus placeholder="John"/>
+          <input type="text" name="first_name" autofocus placeholder="John"/>
         </span>
       </div>
+      <span class="msg1"><strong><?php validate_first();?></strong></span>
+
 
       <div class="oneline" style="">
         <span class="title1" >Last Name:</span> 
         <span class="title2">
-          <input type="text" name="last_name" required placeholder="Smith"/>
+          <input type="text" name="last_name" placeholder="Smith"/>
         </span>
       </div>
+      <span class="msg1"><strong><?php validate_last();?></strong></span>
 
       <div class="oneline" style="">
         <span class="title1" >Email:</span> 
         <span class="title2">
-          <input type="text" name="email" required placeholder="compID@virginia.edu"/>
+          <input type="text" name="email" placeholder="compID@virginia.edu"/>
         </span>
       </div>
+      <span class="msg1"><strong><?php validate_email();?></strong></span>
+
 
       <div class="oneline" style="">
         <span class="title1" >Password:</span> 
         <span class="title2">
-          <input type="text" name="pwd" required placeholder="password"/>
+          <input type="text" name="pwd" placeholder="password"/>
         </span>
       </div>
+      <span class="msg1"><strong><?php validate_pwd();?></strong></span>
+
       
       <div class="oneline">
         <span class="title1" >Year:</span> 
         <span class="title2">
-          <select class="custom-select" name="years" required>
+          <select class="custom-select" name="years">
             <option value="">None</option>
             <option value="first">first</option>
             <option value="second">second</option>
@@ -157,6 +175,8 @@
           </select>
         </span>
       </div>
+      <span class="msg1"><strong><?php validate_year();?></strong></span>
+
 
       <div style="padding-top:15px;">
             <button type="submit" value="submit">Sign up</button> </br>
@@ -168,6 +188,71 @@
   </form>
   </section>
 
+<?php
+  // error messages for first name
+  function validate_first(){
+    if( isset($_POST['first_name']) && (strlen($_POST['first_name']) == 0) ){ 
+      echo "Please enter your first name!";
+    }
+  }
+
+  // error messages for last name
+  function validate_last(){
+    if( isset($_POST['last_name']) && (strlen($_POST['last_name']) == 0) ){ 
+      echo "Please enter your last name!";
+    }
+  }
+
+  // error messages for email
+  function validate_email(){
+    global $db;
+    if( isset($_POST['email']) && (strlen($_POST['email']) == 0) ){ 
+      echo "Please enter your UVA email!";
+    }
+    
+    if(isset($_POST['email']) && (strlen($_POST['email'])!=0) ){
+      if(stristr(''.$_POST['email'], '@virginia.edu') == FALSE){
+        echo 'Use UVA email i.e. sqw34@virginia.edu!';
+      }
+    }
+
+    if(isset($_POST['email']) && (strlen($_POST['email'])!=0)){
+      $email = trim($_POST['email']);
+        if($query = $db->prepare('SELECT id FROM users WHERE email = :email')){
+          $query->bindValue(':email', $email);
+          $query->execute();
+          
+          // Store the result so we can check if the account exists in the database.
+          $data = $query->fetchAll();
+  
+          // check is the account with that email already exists
+          if (count($data) > 0) {
+            // Username already exists
+            echo 'Email exists, please choose another!'; 
+          }
+        }
+    }
+  }
+
+  // error message for password
+  function validate_pwd(){
+    if( isset($_POST['pwd']) && (strlen($_POST['pwd']) == 0) ){ 
+      echo "Please enter a password!";
+    }
+
+    elseif( isset($_POST['pwd']) && (strlen($_POST['pwd']) < 5) && (strlen($_POST['pwd']) > 0) ){ 
+      echo "Minimum password length is 6!";
+    }
+  }
+
+  // error messages for year
+  function validate_year(){
+    if( isset($_POST['years']) && (strlen($_POST['years']) == 0) ){ 
+      echo "Please select a year!";
+    }
+  }
+?>
+
 <script type="text/javascript">
   function redirect(){
     window.location.href = 'http://localhost/CS4640-ztm4qv-kk6ev-project/index.php';
@@ -175,7 +260,7 @@
 </script>
 
 <?php 
-  if($_SERVER['REQUEST_METHOD'] == 'POST'){
+  if($_SERVER['REQUEST_METHOD'] == 'POST' && strlen($_POST['first_name'])!=0 && strlen($_POST['last_name'])!=0 && strlen($_POST['email'])!=0 && strlen($_POST['pwd'])!=0 && strlen($_POST['years'])!=0 ){
     // remove white space
     $email = trim($_POST['email']);
     $password = trim($_POST['pwd']);
@@ -198,6 +283,7 @@
         } 
       
         else {
+          if(stristr(''.$_POST['email'], '@virginia.edu') == TRUE ){
           // Username doesnt exists, insert new account
           if ($query = $db->prepare('INSERT INTO users (email, password, first_name, last_name, year) VALUES (:email, :pwd, :first_name, :last_name, :year)')) {
             // We do not want to expose passwords in our database, so hash the password and use password_verify when a user logs in.
@@ -215,6 +301,7 @@
                   '</script>';
             // header('Location: http://localhost/CS4640-ztm4qv-kk6ev-project/index.php')
           } 
+        }
           $query->closeCursor();
         }
       }

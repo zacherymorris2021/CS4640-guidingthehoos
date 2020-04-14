@@ -96,6 +96,11 @@
         padding: 5px;
       }
 
+      .msg1 {
+        font-style: italic;
+        color: red;
+      }
+
   </style>
 
 <!-- must connect to the DB -->
@@ -118,16 +123,18 @@
           <div class="oneline" style="padding-top:15px;padding-bottom:3px;">
             <span class="title1" >UVA Email:</span> 
             <span class="title2">
-              <input type="text" name="email" required autofocus placeholder="compID@virginia.edu"/>
+              <input type="text" name="email" autofocus placeholder="compID@virginia.edu"/>
             </span>
           </div>
+          <span class="msg1"><strong><?php validate_email();?></strong></span>
 
           <div class="oneline" style="padding-top:15px;padding-bottom:3px;">
             <span class="title1">Password:</span> 
             <span class="title2">
-              <input type="password" name="pwd" required placeholder="password" />
+              <input type="password" name="pwd" placeholder="password" />
             </span>
           </div>
+          <span class="msg1"><strong><?php validate_pwd();?></strong></span>
 
           <div style="padding-top:15px;">
             <button type="submit" value="submit">Login</button> </br>
@@ -141,10 +148,72 @@
     </section>
 
 <?php
+    // error message for email
+    function validate_email(){
+      global $db;
+      if( isset($_POST['email']) && (strlen($_POST['email']) == 0) ){ 
+        echo "Please enter your UVA email!";
+      }
+      
+      elseif(isset($_POST['email'])){
+        if(stristr(''.$_POST['email'], '@virginia.edu') == FALSE){
+          echo 'Use UVA email i.e. sqw34@virginia.edu!';
+        }
+      }
+
+      elseif( isset($_POST['email']) && (strlen($_POST['email']) != 0) ){
+        $email = trim($_POST['email']);
+        if($query = $db->prepare('SELECT id, password FROM users WHERE email = :email')){
+          $query->bindValue(':email', $email);
+          $query->execute();
+          $user = $query->fetchAll();
+          if(count($user) > 0){
+            // user found, do nothing
+          }
+          else{
+            echo "Email doesn't match our records! <br />";
+          }
+        }
+      }
+    }
+
+    // error message for password
+    function validate_pwd(){
+      global $db;
+      if( isset($_POST['email']) && (strlen($_POST['email']) == 0) ){ 
+        echo "Please enter your password!";
+      }
+
+      elseif(isset($_POST['email'])){
+        $email = trim($_POST['email']);
+        $pwd = trim($_POST['pwd']);
+      
+
+        // prepare SQL statement - protects against SQL injection
+        if( (isset($_POST['email'])) && ($query = $db->prepare('SELECT * FROM users WHERE email = :email')) ){
+          $query->bindValue(':email', $email);
+          $query->execute();
+
+          $results = $query->fetch();
+          $password_hashed = $results[2];
+
+          // account exists, now we verify the password
+          if(password_verify($pwd, $password_hashed)){
+            // password matches, will be logged in
+          }
+          else{
+            echo "Password doesn't match our records!";
+          }
+        }
+      }
+    }
+?>
+
+<?php
   if($_SERVER['REQUEST_METHOD'] == 'POST'){
     // clean white space
     $email = trim($_POST['email']);
-    $pwd = trim($_POST['pwd']);
+    // $pwd = trim($_POST['pwd']);
 
     // prepare SQL statement - protects against SQL injection
     if($query = $db->prepare('SELECT * FROM users WHERE email = :email')){
@@ -160,26 +229,20 @@
       $year = $results[5];
 
       // account exists, now we verify the password
-      if(password_verify($pwd, $password_hashed)){
+      if(password_verify(trim($_POST['pwd']), $password_hashed)){
         // verifcation success, user has loggedin
         // create sessions so we know the user is logged in, they basically act like cookies but remember the data on the server
         session_regenerate_id();
         $_SESSION['loggedin'] = TRUE;
         $_SESSION['id'] = $id;
         $_SESSION['email'] = $email;
-        $_SESSION['pwd'] = $pwd;
+        $_SESSION['pwd'] = trim($_POST['pwd']);
         $_SESSION['pwd_hashed'] = $password_hashed;
         $_SESSION['first_name'] = $first_name;
         $_SESSION['last_name'] = $last_name;
         $_SESSION['year'] = $year;
         header('Location: http://localhost/CS4640-ztm4qv-kk6ev-project/templates/homepage-after-login.php');
       }
-      else{
-        echo 'Incorrect password!';
-      }
-    }
-    else{
-      echo 'Incorrect username!';
     }
   }
 ?>
