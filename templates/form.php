@@ -141,8 +141,10 @@
                 <button type="button" name ="submit" class = "btn btn-primary" id="Submit" onclick="Rightinfo()" >Submit</button>
                 <p id="demo"></p>
             </div> -->
+
+            
             <!-- <br>
-  -->
+  -->       <input type="hidden" name = "useremail" value = "<?php  echo $_SESSION['email'] ?>" />
             <input type="submit" name="submit2" value="Submit" />
         </form>
         </div>
@@ -188,7 +190,8 @@
         $filetmpname = $_FILES["uploadfile"]["tmp_name"];
         $folder = "../uploadedimages/";
         move_uploaded_file($filetmpname, $folder.$filename);
-        addTask($org_name, $dues, $locations,$about,$chk,$tbox,$filename);
+        $email = $_POST['useremail'];
+        addTask($org_name, $dues, $locations,$about,$chk,$tbox,$filename,$email);
         if((($_POST['about']) != NULL && ($_POST['org_name']) != NULL && is_numeric($_POST['dues']) == TRUE)){
         echo '<script type="text/javascript">',
                 'redirect();',

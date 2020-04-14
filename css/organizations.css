@@ -38,11 +38,15 @@ figure {
   h3, p, a {
     padding: 0 20px;
   }
-  img {
-    max-height: 180px;
+  /* img {
+    /* max-height: 180 px; */
+    /* height: auto; */
+    /* max-width: 180px; */
     /* size:100%; */
-    /* width: 100%; */
-  }
+
+
+    /* size:100%; */
+    /* width: 100%; } */
   .front {
     background: rgb(226, 226, 226);
     transition: all .5s ease-in-out;

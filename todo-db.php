@@ -17,7 +17,7 @@
 //      execute() actually executes the SQL statement
 //addTask($org_name, $dues, $locations,$about,$chk,$tbox,$file_name);
 
-function addTask($org_name, $dues, $locations, $about,$chk,$tbox,$filename)
+function addTask($org_name, $dues, $locations, $about,$chk,$tbox,$filename,$email)
 {
 	global $db;
 	
