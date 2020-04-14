@@ -17,7 +17,7 @@
 //      execute() actually executes the SQL statement
 //addTask($org_name, $dues, $locations,$about,$chk,$tbox,$file_name);
 
-function addTask($org_name, $dues, $locations, $about,$chk,$tbox,$filename)
+function addTask($org_name, $dues, $locations, $about,$chk,$tbox,$filename,$email)
 {
 	global $db;
 	
@@ -74,21 +74,21 @@ function addTask($org_name, $dues, $locations, $about,$chk,$tbox,$filename)
 // }
 
 
-// function getAllTasks()
-// {
-// 	global $db;
-// 	$query = "SELECT * FROM todo";
-// 	$statement = $db->prepare($query);
-// 	$statement->execute();
+function getAllTasks()
+{
+	global $db;
+	$query = "SELECT * FROM table5 ";
+	$statement = $db->prepare($query);
+	$statement->execute();
 	
-// 	// fetchAll() returns an array for all of the rows in the result set
-// 	$results = $statement->fetchAll();
+	// fetchAll() returns an array for all of the rows in the result set
+	$results = $statement->fetchAll();
 	
-// 	// closes the cursor and frees the connection to the server so other SQL statements may be issued
-// 	$statement->closecursor();
+	// closes the cursor and frees the connection to the server so other SQL statements may be issued
+	$statement->closecursor();
 	
-// 	return $results;
-// }
+	return $results;
+}
 
 
 // function getTaskInfo_by_id($id)
