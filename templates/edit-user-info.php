@@ -67,6 +67,7 @@
       .navbar-nav a.active {
         background-color: #0B3F72 !important;
         cursor: default;
+        color: white!important;
       }
 
       .navbar-nav li.active{
