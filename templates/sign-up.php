@@ -3,43 +3,27 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">  <!-- required to handle IE -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">  
-  <meta name="google-signin-client_id" content="590898294226-nmnlp76d4ki4ktaqnb90p9gvule455js.apps.googleusercontent.com">
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="/js/index.js"></script>
+
   <title>Guiding the Hoos</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="/css/homepage-after-login.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> 
 
   <style>
-    .text-edit1 {
-      font-weight: 750;
-      font-size: 20px;
-      color: rgb(11,63,114);
-      font-family:arial;
-    }
-
     .card{
-      height: 551px;
       width: 400px;
       border-width: 2px;
       border-color: rgba(255, 255, 255, 0.527);
       background-color: rgba(255, 255, 255, 0.700);
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      margin: auto;
+      text-align: center;
+      margin-top:5%;
     }
-
-    .adjust-card{
-      margin-left: 34%;
-      margin-top: -18px;
-    }
-
-    @media only screen (min-width: 900px) and (min-height:1200) {
-      .adjust-card{
-      margin-left: 40%;
-      margin-top: 20%;
-    } 
- }
 
     html, body {
         background: url(http://localhost/CS4640-ztm4qv-kk6ev-project/images/rotunda3.jpg) no-repeat center center fixed;
@@ -49,149 +33,225 @@
         background-size: cover;
     }
 
-    input, textarea, button {
-      display:inline-block;
-      font-family:arial;
-      margin: 5px 10px 5px 60px;
-      padding: 8px 12px 8px 12px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      box-sizing: border-box;
-      width: 90%;
-      font-size: small;
-    }
+    button {
+        border: none;
+        outline: 0;
+        display: inline-block;
+        color: white;
+        background-color: #0B3F72;
+        text-align: center;
+        cursor: pointer;
+        width: 45%;
+        font-size: 17px;
+        margin:auto;
+        border-radius:5px;
+      }
 
-    button[type=submit] {
-      font-family:arial;
-      font-size: 14px;
-      font-weight: 550;
-      padding:5px 15px; 
-      background:#0B3F72; 
-      border:0 none;
-      cursor:pointer;
-      border-radius: 5px; 
-      color:white;
-    }
-  
-    button[type=submit]:hover {
-      opacity:0.8;
-      box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
-    }
+      button:hover {
+        opacity:0.8;
+        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+      }
 
-    .label1 {
-      font-family:arial;
-      margin-left: -100px;
-      font-weight: 750;
-      font-size:14px;
-      color: rgb(11,63,114);
-    }
-
-    .label2 {
-      font-family:arial;
-      margin-left: -100px;
-      font-weight: 750;
-      font-size:14px;
-      color: rgb(11,63,114);
-    }
-
-    .label3 {
-      font-family:arial;
-      margin-left: -93px;
-      font-weight: 750;
-      font-size:14px;
-      color: rgb(11,63,114);
-    }
-
-    .label4 {
-      font-family:arial;
-      margin-left: -102px;
-      font-weight: 750;
-      font-size:14px;
-      color: rgb(11,63,114);
-    }
-
-    .label5 {
-      font-family:arial;
-      margin-left: -104px;
-      font-weight: 750;
-      font-size:14px;
-      color: rgb(11,63,114);
-    }
+    h1{
+        color: #0B3F72;
+        font-size:25px;
+      }
 
     .link {
-      font-family:arial;
-      margin-left: 95px;
+      margin-left: auto;
+      margin-right:auto;
       font-weight: 750;
+      font-size:15px;
+      color: #337AB7;
     }
 
-    img {
-        width: 70px;
-        padding-bottom: 10px;
+    img{
+      width:20%;
+      margin-left:auto;
+      margin-right:auto;
     }
 
-    .custom-select {
-      font-family: Arial;
-      margin-left: 60px;
-      width: 90%;
-      margin: 8px 12px 5px 60px;
-    }
+    hr {
+        color: #0B3F72; 
+        padding:0px;
+        margin:0px;
+        border: 0;
+        height: 1px;
+        background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+      }
 
-    .edit-margins{
-      margin-right:90px;
-      display:inline-block;
-    }
-    .link {
-      font-family:arial;
-      margin-left: 95px;
-      font-weight: 750;
-    }
+    .title1 {
+        color: #0B3F72;
+        font-size: 18px;
+        font-weight: 600;
+      }
+
+      .title2 {
+        color: #259DDD;
+        font-size: 18px;
+      }
+
+      .oneline{
+        display:inline;
+        padding: 5px;
+      }
+
+      .custom-select {
+        width: auto;
+        font-size:18px;
+      }
+
+      .msg1 {
+        font-style: italic;
+        color: red;
+      }
+
 
 </style>
 
 <!-- must connect to the DB -->
 <?php require('../connect-db.php'); ?> 
 
+<?php
+    session_start();
+    session_destroy();
+?>
+
 </head>
   <body>
-  <br><br>
-        <div class="adjust-card">
-            <div class="card">
-                <div class="card-body">
-                    <div style="text-align: center; padding-top:5%;">
-                        <img src="../images/small-logo.png" alt="Logo" style="margin-top:-28px;"><br>
-                        <p class="text-edit1">Welcome to Guiding the Hoos! </br> Create your account below!</p>
-                        <hr>
-                        <div class="edit-margins">
-                        <form action="<?php $_SERVER['PHP_SELF']?>" method="POST"> 
-                           <div class="label1" >First Name:</div> 
-                           <input type="text" name="first_name" required autofocus /> </br>
+  <section>
+  <form action="<?php $_SERVER['PHP_SELF']?>" method="POST"> 
+    <div class="card">
+      <img src="../images/small-logo.png" alt="Logo-small" style="padding-top:10px;">
 
-                           <div class="label2">Last Name:</div> 
-                           <input type="text" name="last_name" required /> </br>
+        <h1 style="padding-top:10px;padding-bottom:5px;">Welcome to Guiding the Hoos!<br>Create your account below!</h1>
+      
+      <hr>
 
-                           <div class="label3">Year at UVA:</div> 
-                           <select class="custom-select" name="years" required>
-                            <option value="">None</option>
-                            <option value="first">first</option>
-                            <option value="second">second</option>
-                            <option value="third">third</option>
-                            <option value="fourth">fourth</option>
-                          </select>
+      <div class="oneline" style="padding-top:15px;">
+        <span class="title1" >First Name:</span> 
+        <span class="title2">
+          <input type="text" name="first_name" autofocus placeholder="John"/>
+        </span>
+      </div>
+      <span class="msg1"><strong><?php validate_first();?></strong></span>
 
-                           <div class="label4">UVA Email:</div> 
-                           <input type="email" name="email" required /> </br>
 
-                           <div class="label5">Password:</div> 
-                           <input type="password" name="pwd" required /> </br>
+      <div class="oneline" style="">
+        <span class="title1" >Last Name:</span> 
+        <span class="title2">
+          <input type="text" name="last_name" placeholder="Smith"/>
+        </span>
+      </div>
+      <span class="msg1"><strong><?php validate_last();?></strong></span>
 
-                          <button type="submit" value="submit">Sign up</button> </br>
-                          <a class="link" href="http://localhost/CS4640-ztm4qv-kk6ev-project/index.php">return to login</a>
-                        </form>
-                      </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+      <div class="oneline" style="">
+        <span class="title1" >Email:</span> 
+        <span class="title2">
+          <input type="text" name="email" placeholder="compID@virginia.edu"/>
+        </span>
+      </div>
+      <span class="msg1"><strong><?php validate_email();?></strong></span>
+
+
+      <div class="oneline" style="">
+        <span class="title1" >Password:</span> 
+        <span class="title2">
+          <input type="text" name="pwd" placeholder="password"/>
+        </span>
+      </div>
+      <span class="msg1"><strong><?php validate_pwd();?></strong></span>
+
+      
+      <div class="oneline">
+        <span class="title1" >Year:</span> 
+        <span class="title2">
+          <select class="custom-select" name="years">
+            <option value="">None</option>
+            <option value="first">first</option>
+            <option value="second">second</option>
+            <option value="third">third</option>
+            <option value="fourth">fourth</option>
+          </select>
+        </span>
+      </div>
+      <span class="msg1"><strong><?php validate_year();?></strong></span>
+
+
+      <div style="padding-top:15px;">
+            <button type="submit" value="submit">Sign up</button> </br>
+            <div style="padding-top:5px;"> </div>
+            <a class="link" href="http://localhost/CS4640-ztm4qv-kk6ev-project/index.php">return to login</a>
+          </div>
+          <div style="padding-top:10px;"> </div>
+    </div>
+  </form>
+  </section>
+
+<?php
+  // error messages for first name
+  function validate_first(){
+    if( isset($_POST['first_name']) && (strlen($_POST['first_name']) == 0) ){ 
+      echo "Please enter your first name!";
+    }
+  }
+
+  // error messages for last name
+  function validate_last(){
+    if( isset($_POST['last_name']) && (strlen($_POST['last_name']) == 0) ){ 
+      echo "Please enter your last name!";
+    }
+  }
+
+  // error messages for email
+  function validate_email(){
+    global $db;
+    if( isset($_POST['email']) && (strlen($_POST['email']) == 0) ){ 
+      echo "Please enter your UVA email!";
+    }
+    
+    if(isset($_POST['email']) && (strlen($_POST['email'])!=0) ){
+      if(stristr(''.$_POST['email'], '@virginia.edu') == FALSE){
+        echo 'Use UVA email i.e. sqw34@virginia.edu!';
+      }
+    }
+
+    if(isset($_POST['email']) && (strlen($_POST['email'])!=0)){
+      $email = trim($_POST['email']);
+        if($query = $db->prepare('SELECT id FROM users WHERE email = :email')){
+          $query->bindValue(':email', $email);
+          $query->execute();
+          
+          // Store the result so we can check if the account exists in the database.
+          $data = $query->fetchAll();
+  
+          // check is the account with that email already exists
+          if (count($data) > 0) {
+            // Username already exists
+            echo 'Email exists, please choose another!'; 
+          }
+        }
+    }
+  }
+
+  // error message for password
+  function validate_pwd(){
+    if( isset($_POST['pwd']) && (strlen($_POST['pwd']) == 0) ){ 
+      echo "Please enter a password!";
+    }
+
+    elseif( isset($_POST['pwd']) && (strlen($_POST['pwd']) < 5) && (strlen($_POST['pwd']) > 0) ){ 
+      echo "Minimum password length is 6!";
+    }
+  }
+
+  // error messages for year
+  function validate_year(){
+    if( isset($_POST['years']) && (strlen($_POST['years']) == 0) ){ 
+      echo "Please select a year!";
+    }
+  }
+?>
 
 <script type="text/javascript">
   function redirect(){
@@ -200,7 +260,7 @@
 </script>
 
 <?php 
-  if($_SERVER['REQUEST_METHOD'] == 'POST'){
+  if($_SERVER['REQUEST_METHOD'] == 'POST' && strlen($_POST['first_name'])!=0 && strlen($_POST['last_name'])!=0 && strlen($_POST['email'])!=0 && strlen($_POST['pwd'])!=0 && strlen($_POST['years'])!=0 ){
     // remove white space
     $email = trim($_POST['email']);
     $password = trim($_POST['pwd']);
@@ -219,10 +279,11 @@
         // check is the account with that email already exists
         if (count($data) > 0) {
           // Username already exists
-          exit('Username exists, please choose another!'); // need to fix to show in form card
+          exit;
         } 
       
         else {
+          if(stristr(''.$_POST['email'], '@virginia.edu') == TRUE){
           // Username doesnt exists, insert new account
           if ($query = $db->prepare('INSERT INTO users (email, password, first_name, last_name, year) VALUES (:email, :pwd, :first_name, :last_name, :year)')) {
             // We do not want to expose passwords in our database, so hash the password and use password_verify when a user logs in.
@@ -240,6 +301,7 @@
                   '</script>';
             // header('Location: http://localhost/CS4640-ztm4qv-kk6ev-project/index.php')
           } 
+        }
           $query->closeCursor();
         }
       }

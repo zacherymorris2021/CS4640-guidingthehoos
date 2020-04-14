@@ -31,6 +31,14 @@
     ?>
         
     <style>
+        html, body {
+      background: url(http://localhost/CS4640-ztm4qv-kk6ev-project/images/planeback3.png) no-repeat center center fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+    }
+    
       /* Navigation bar */
       .nav-item a:hover {
       color: rgb(255, 255, 255) !important;
@@ -60,6 +68,7 @@
       .navbar-nav a.active {
         background-color: #0B3F72 !important;
         cursor: default;
+        color: white!important;
       }
 
       .navbar-nav li.active{
@@ -96,14 +105,15 @@
         border: none;
         outline: 0;
         display: inline-block;
-        padding: 8px;
+        padding: 4px;
         color: white;
         background-color: #0B3F72;
         text-align: center;
         cursor: pointer;
-        width: 75%;
+        width: 60%;
         font-size: 18px;
         margin:auto;
+        border-radius:5px;
       }
 
       button:hover {
@@ -125,7 +135,17 @@
         background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
       }
 
-
+      /* footer */
+      footer {
+        position:fixed;
+        bottom: 0;
+        width: 100%;
+        height: 50px;
+        background-color: #343A40;
+        color:lightgrey;
+        text-align: center;
+        padding: 10px;
+      }
     </style>
 
     <!-- Navigation bar -->
@@ -180,6 +200,10 @@
         <button onclick="window.location.href = 'http://localhost/CS4640-ztm4qv-kk6ev-project/templates/edit-user-info.php';">Edit Info</button> <br>
       </div>
     </section>
+
+    <footer class="primary-footer bg-dark">
+        <small class="copyright">&copy; Guiding the Hoos</small>
+    </footer>
 
   </body>
 </html>

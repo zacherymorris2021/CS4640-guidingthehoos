@@ -34,11 +34,23 @@
 
   
 <style>
+
+
+    html, body {
+      background: url(http://localhost/CS4640-ztm4qv-kk6ev-project/images/planeback3.png) no-repeat center center fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+    }
+
+
   img {
     width: 100%;
     height: 150px;
 
   }
+
     /* Navigation bar */
     .nav-item a:hover {
       color: rgb(255, 255, 255) !important;
@@ -68,6 +80,7 @@
     .navbar-nav a.active {
       background-color: #0B3F72 !important;
       cursor: default;
+      color: white!important;
     }
 
     .navbar-nav li.active{
@@ -79,6 +92,18 @@
   -webkit-transition: width 0.4s ease-in-out;
   transition: width 0.4s ease-in-out;
 }
+
+
+    footer {
+      position:fixed;
+      bottom: 0;
+      width: 100%;
+      height: 50px;
+      background-color: #343A40;
+      color:lightgrey;
+      text-align: center;
+      padding: 10px;
+    }
 
 input[type=text]:focus {
   width: 40%;
@@ -95,6 +120,7 @@ input[type=text]:focus {
                 <li class="nav-item"><a class="nav-link" href="http://localhost/CS4640-ztm4qv-kk6ev-project/templates/form.php">Add Organization</a></li>            
               </ul>
             <ul class="navbar-nav navbar-right">
+
             <li class="nav-item"><form  method="GET"  id="searchform"> 
       <input  type="text" name="name" placeholder="Search for organization name..."> 
       <input  type="submit" name="search" value="search"> 
@@ -104,7 +130,7 @@ input[type=text]:focus {
             </li>
                 <li class="nav-item">
                 <a class="nav-link" href="logout.php">Sign out</a>
-                </li>
+              </li>
             </ul>
         </nav>
 <p style="text-align:center;"><?php searchbar(); ?></p>
@@ -188,6 +214,8 @@ input[type=text]:focus {
         <?php }
         $stmt->closecursor(); ?>
 
-    
+        <footer class="primary-footer bg-dark">
+        <small class="copyright">&copy; Guiding the Hoos</small>
+        </footer>
     </body>
 </html>

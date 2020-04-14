@@ -20,6 +20,7 @@
     require('../connect-db.php');
     require('../todo-db.php');
     ?> 
+  
     <?php
       // We need to use sessions, so you should always start sessions using the below code.
       session_start();
@@ -30,34 +31,23 @@
       }
   ?>
 
-    <!-- nav bar:
-        1. Logo: small-logo.png
-        2. Study Spots
-        3. Food Places
-        4. Organization
-        Right side
-        1. Search bar
-        2. Profile
-        3. Sign out-->
-        <!-- Navigation bar -->
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-            <ul class="navbar-nav mr-auto navbar-left">
-                <li class="navbar-brand"><img src="../images/small-logo.png" height="30" class="d-inline-block align-top" alt=""></li>
-                <li class="nav-item"><a class="nav-link" href="http://localhost/CS4640-ztm4qv-kk6ev-project/templates/homepage-after-login.php">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="http://localhost/CS4640-ztm4qv-kk6ev-project/templates/organizations.php">Organizations</a></li>
-                <li class="nav-item"><a class="nav-link active" href="#">Add Organization</a></li>
-            </ul>
-            <ul class="navbar-nav navbar-right">
-            <li class="nav-item" style="padding-top:3.5px">
-            <form action="" method = "GET" style="padding-right: 10px">
-                <input width=align="right" class="form-control" type ="text" name= 'q' placeholder="Search Website..." value = "">
-            </form>
+    <!-- nav bar -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <ul class="navbar-nav mr-auto navbar-left">
+            <li class="navbar-brand"><img src="../images/small-logo.png" height="30" class="d-inline-block align-top" alt=""></li>
+            <li class="nav-item"><a class="nav-link" href="http://localhost/CS4640-ztm4qv-kk6ev-project/templates/homepage-after-login.php">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="http://localhost/CS4640-ztm4qv-kk6ev-project/templates/organizations.php">Organizations</a></li>
+            <li class="nav-item"><a class="nav-link active" href="#">Add Organization</a></li>
+        </ul>
+        <ul class="navbar-nav navbar-right">
+            <li class="nav-item">
+                <a class="nav-link" href="profile.php"><?php echo $_SESSION['first_name'] . "'s Profile";?> </a>
             </li>
-                <li class="nav-item">
-                <a class="nav-link" href="../index.php" onclick="signOut();">Sign out</a>
-                </li>
-            </ul>
-        </nav>
+            <li class="nav-item">
+                <a class="nav-link" href="logout.php">Sign out</a>
+            </li>
+        </ul>
+    </nav>
 
     <div class="container">
         <br>
@@ -148,6 +138,11 @@
             <input type="submit" name="submit2" value="Submit" />
         </form>
         </div>
+
+    <footer class="primary-footer bg-dark">
+        <small class="copyright">&copy; Guiding the Hoos</small>
+    </footer>
+
         <script type="text/javascript">
   function redirect(){
     window.location.href = 'http://localhost/CS4640-ztm4qv-kk6ev-project/templates/organizations.php';
@@ -190,8 +185,10 @@
         $filetmpname = $_FILES["uploadfile"]["tmp_name"];
         $folder = "../uploadedimages/";
         move_uploaded_file($filetmpname, $folder.$filename);
+
         $email = $_POST['useremail'];
         addTask($org_name, $dues, $locations,$about,$chk,$tbox,$filename,$email);
+
         if((($_POST['about']) != NULL && ($_POST['org_name']) != NULL && is_numeric($_POST['dues']) == TRUE)){
         echo '<script type="text/javascript">',
                 'redirect();',
@@ -284,6 +281,24 @@ function Rightinfo(){
 </script>
 
 <style>
+    html, body {
+      background: url(http://localhost/CS4640-ztm4qv-kk6ev-project/images/planeback3.png) no-repeat center center fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+    }
+    footer {
+      position:relative;
+      bottom: 0;
+      width: 100%;
+      height: 50px;
+      background-color: #343A40;
+      color:lightgrey;
+      text-align: center;
+      padding: 10px;
+    }
+
 .msg {
 	  font-style: italic;
 	  color: red;
@@ -368,7 +383,7 @@ p{
 
     .navbar-nav a {
       text-decoration: none !important;
-      color: #fff;
+      color: lightgrey!important;
       display: block;
       transition: .3s background-color;
     }
@@ -376,6 +391,7 @@ p{
     .navbar-nav a.active {
       background-color: #0B3F72 !important;
       cursor: default;
+      color: white!important;
     }
 
     .navbar-nav li.active{
