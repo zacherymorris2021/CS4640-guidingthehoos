@@ -31,6 +31,9 @@
       }
   ?>
 
+    <div id="container">
+    <div id="main">
+
     <!-- nav bar -->
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <ul class="navbar-nav mr-auto navbar-left">
@@ -138,8 +141,10 @@
             <input type="submit" name="submit2" value="Submit" />
         </form>
         </div>
+    </div>
+    </div>
 
-    <footer class="primary-footer bg-dark">
+    <footer class="primary-footer bg-dark" id="footer">
         <small class="copyright">&copy; Guiding the Hoos</small>
     </footer>
 
@@ -281,14 +286,30 @@ function Rightinfo(){
 </script>
 
 <style>
+    {
+        margin:0;
+        padding:0;
+    }
+
     html, body {
       background: url(http://localhost/CS4640-ztm4qv-kk6ev-project/images/planeback3.png) no-repeat center center fixed;
       -webkit-background-size: cover;
       -moz-background-size: cover;
       -o-background-size: cover;
       background-size: cover;
+      height:100%;
     }
-    footer {
+
+    #container{
+      min-height:100%;
+    }
+
+    #main{
+      overflow:auto;
+      padding-bottom:50px;
+    }
+
+    #footer {
       position:relative;
       bottom: 0;
       width: 100%;
@@ -297,6 +318,8 @@ function Rightinfo(){
       color:lightgrey;
       text-align: center;
       padding: 10px;
+      margin-top:-50px;
+      clear:both;
     }
 
 .msg {
