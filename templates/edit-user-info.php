@@ -130,6 +130,11 @@
         width: auto;
         font-size:18px;
       }
+      
+      .msg1 {
+        font-style: italic;
+        color: red;
+      }
     </style>
 
     <!-- Navigation bar -->
@@ -181,6 +186,8 @@
                     <input type="text" style="text-align:center;" name="email" placeholder="<?php echo $_SESSION['email'];?>"/>
                     </span>
                 </div>
+                <span class="msg1"><strong><?php validate_email();?></strong></span>
+
 
                 <div class="oneline"> 
                     <span class="title1">Password:</span> 
@@ -201,7 +208,8 @@
                         </select>
                     </span>
                 </div>
-
+                
+                <span class="msg1" style="padding-bottom:5px;"><strong><?php nothing_changed();?></strong></span>
                 <button type="submit" value="submit">Update Info</button> <br>
 
             </div>
@@ -209,6 +217,48 @@
     </section>
 
   </body>
+
+  
+<?php
+
+  // error messages for email
+  function validate_email(){
+    global $db;
+    
+    if(isset($_POST['email']) && (strlen($_POST['email'])!=0) ){
+      if(stristr(''.$_POST['email'], '@virginia.edu') == FALSE){
+        echo 'Use UVA email i.e. sqw34@virginia.edu!';
+      }
+    }
+
+    if(isset($_POST['email']) && (strlen($_POST['email'])!=0)){
+      $email = trim($_POST['email']);
+        if($query = $db->prepare('SELECT id FROM users WHERE email = :email')){
+          $query->bindValue(':email', $email);
+          $query->execute();
+          
+          // Store the result so we can check if the account exists in the database.
+          $data = $query->fetchAll();
+  
+          // check is the account with that email already exists
+          if (count($data) > 0) {
+            // Username already exists
+            echo 'Email exists, please choose another!'; 
+          }
+        }
+    }
+  }
+
+  // if nothing is entered in any ie no chnages made
+  function nothing_changed(){
+    if(isset($_POST['first_name']) && isset($_POST['last_name']) && isset($_POST['email']) && isset($_POST['pwd']) && isset($_POST['year'])){
+      if(strlen($_POST['first_name'])==0 && strlen($_POST['last_name'])==0 && strlen($_POST['email'])==0 && strlen($_POST['pwd'])==0 && strlen($_POST['year'])==0){
+        echo 'Must enter something to update info!';
+      }
+    }
+  }
+
+?>
 
   <script type="text/javascript">
   function redirect(){
@@ -218,7 +268,7 @@
 
 <?php
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
-        if( isset($_POST['email'], $_POST['pwd'], $_POST['first_name'], $_POST['last_name'], $_POST['year']) ){
+        if( isset($_POST['email'], $_POST['pwd'], $_POST['first_name'], $_POST['last_name'], $_POST['year']) || (strlen($_POST['first_name'])!=0 || strlen($_POST['last_name'])!=0 || strlen($_POST['email'])!=0 || strlen($_POST['pwd'])!=0 || strlen($_POST['year'])!=0)  ){
             // remove white space
             $e = trim($_POST['email']);
             $p = trim($_POST['pwd']);
@@ -226,53 +276,78 @@
             $l = trim($_POST['last_name']);
             $y = trim($_POST['year']);
 
-            if($query = $db->prepare('UPDATE `users` SET `email`=:email,`password`=:pwd,`first_name`=:first_name,`last_name`=:last_name,`year`=:year WHERE `id`=:id1')){
+            if( (strlen($_POST['email']) == NULL) || (stristr(''.$_POST['email'], '@virginia.edu') == TRUE) ){
+              if($query = $db->prepare('UPDATE `users` SET `email`=:email,`password`=:pwd,`first_name`=:first_name,`last_name`=:last_name,`year`=:year WHERE `id`=:id1')){
                 $query->bindValue('id1', $_SESSION['id']);
-                if($e != NULL){
-                    $query->bindValue('email', $e);
-                    $_SESSION['email'] = $e;
-                }
-                else{
-                    $query->bindValue('email', $_SESSION['email']);
-                }
-                if($p != NULL){
-                    $pwd = password_hash($p, PASSWORD_BCRYPT);
-                    $query->bindValue('pwd', $pwd);
-                    $_SESSION['pwd'] = $p;
-                }
-                else{
-                    $pwd = password_hash($p, PASSWORD_BCRYPT);
-                    $query->bindValue('pwd', $_SESSION['pwd']);
-                }
-                if($f != NULL){
-                    $query->bindValue('first_name', $f);
-                    $_SESSION['first_name'] = $f;
-                }
-                else{
-                    $query->bindValue('first_name', $_SESSION['first_name']);
-                }
-                if($l != NULL){
-                    $query->bindValue('last_name', $l);
-                    $_SESSION['last_name'] = $l;
-                }
-                else{
-                    $query->bindValue('last_name', $_SESSION['last_name']);
-                }
-                if($y != NULL){
-                    $query->bindValue('year', $y);
-                    $_SESSION['year'] = $y;
-                }
-                else{
-                    $query->bindValue('year', $_SESSION['year']);
-                }
-                $query->execute();
-                $query->closeCursor();
 
-                echo '<script type="text/javascript">',
-                'redirect();',
-                '</script>';
-            }
-        }
+                  if($e != NULL){
+                      if($query1 = $db->prepare('SELECT id FROM users WHERE email = :email')){
+                      echo '1';
+                      $query1->bindValue(':email', $e);
+                      $query1->execute();
+                      // Store the result so we can check if the account exists in the database.
+                      $data = $query1->fetchAll();
+
+                      $query1->closeCursor();
+                      // check is the account with that email already exists
+                      if (count($data) > 0) {
+                        // Username already exists
+                        exit;
+                      }
+                    
+                    else{
+                      $query->bindValue('email', $e);
+                      $_SESSION['email'] = $e;
+                    }
+                  }
+                  else{
+                      $query->bindValue('email', $_SESSION['email']);
+                  }
+                      $query->bindValue('email', $e);
+                      $_SESSION['email'] = $e;
+                  }
+                  else{
+                      $query->bindValue('email', $_SESSION['email']);
+                  }
+                  if($p != NULL){
+                      $pwd = password_hash($p, PASSWORD_BCRYPT);
+                      $query->bindValue('pwd', $pwd);
+                      $_SESSION['pwd'] = $p;
+                  }
+                  else{
+                      $pwd = password_hash($p, PASSWORD_BCRYPT);
+                      $query->bindValue('pwd', $_SESSION['pwd_hashed']);
+                  }
+                  if($f != NULL){
+                      $query->bindValue('first_name', $f);
+                      $_SESSION['first_name'] = $f;
+                  }
+                  else{
+                      $query->bindValue('first_name', $_SESSION['first_name']);
+                  }
+                  if($l != NULL){
+                      $query->bindValue('last_name', $l);
+                      $_SESSION['last_name'] = $l;
+                  }
+                  else{
+                      $query->bindValue('last_name', $_SESSION['last_name']);
+                  }
+                  if($y != NULL){
+                      $query->bindValue('year', $y);
+                      $_SESSION['year'] = $y;
+                  }
+                  else{
+                      $query->bindValue('year', $_SESSION['year']);
+                  }
+                  $query->execute();
+                  $query->closeCursor();
+
+                  echo '<script type="text/javascript">',
+                  'redirect();',
+                  '</script>';
+              }
+          }
     }
+  }
 ?>
 </html>

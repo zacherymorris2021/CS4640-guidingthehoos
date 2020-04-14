@@ -34,6 +34,15 @@
 
   
 <style>
+
+    html, body {
+      background: url(http://localhost/CS4640-ztm4qv-kk6ev-project/images/planeback3.png) no-repeat center center fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+    }
+
     /* Navigation bar */
     .nav-item a:hover {
       color: rgb(255, 255, 255) !important;

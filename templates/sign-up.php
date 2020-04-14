@@ -279,11 +279,11 @@
         // check is the account with that email already exists
         if (count($data) > 0) {
           // Username already exists
-          exit('Username exists, please choose another!'); // need to fix to show in form card
+          exit;
         } 
       
         else {
-          if(stristr(''.$_POST['email'], '@virginia.edu') == TRUE ){
+          if(stristr(''.$_POST['email'], '@virginia.edu') == TRUE){
           // Username doesnt exists, insert new account
           if ($query = $db->prepare('INSERT INTO users (email, password, first_name, last_name, year) VALUES (:email, :pwd, :first_name, :last_name, :year)')) {
             // We do not want to expose passwords in our database, so hash the password and use password_verify when a user logs in.
