@@ -19,21 +19,26 @@
   <body>
 
   <!-- must connect to the DB -->
-  <?php require('../connect-db.php'); ?> 
-
-  <!-- check if user has session -->
-  <?php
-      // We need to use sessions, so you should always start sessions using the below code.
-      session_start();
-      // If the user is not logged in redirect to the login page...
-      if (!isset($_SESSION['loggedin'])) {
-        header('Location: http://localhost/CS4640-ztm4qv-kk6ev-project/index.php');
-        exit;
-      }
+  <?php 
+    include('../connect-db.php');
+    require('../connect-db.php');
+    require('../todo-db.php');
+    // We need to use sessions, so you should always start sessions using the below code.
+    session_start();
+    // If the user is not logged in redirect to the login page...
+    if (!isset($_SESSION['loggedin'])) {
+      header('Location: http://localhost/CS4640-ztm4qv-kk6ev-project/index.php');
+      exit;
+    }
   ?>
 
   
 <style>
+  img {
+    width: 100%;
+    height: 150px;
+
+  }
     /* Navigation bar */
     .nav-item a:hover {
       color: rgb(255, 255, 255) !important;
@@ -69,38 +74,31 @@
       background-color: #0B3F72 !important;
       cursor: default;
     }
+    input[type=text] {
+  width: 130px;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+}
 
-    /* Slideshow */
-    .img-details{
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-      width: 50%;
-    }
+input[type=text]:focus {
+  width: 40%;
+}
 
-    .footer {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: #343A40;
-    color: white;
-    text-align: center;
-    padding-top: 7px;
-    padding-bottom: 7px;
-    }
   </style>
+   <!-- Navigation bar -->
 
-    <!-- Navigation bar -->
-
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+   <nav class="navbar navbar-expand-md navbar-dark bg-dark">
             <ul class="navbar-nav mr-auto navbar-left">
-                <li class="navbar-brand"><img src="../images/small-logo.png" height="30" class="d-inline-block align-top" alt=""></li>
+                <li class="navbar-brand"><img style="height:30px;" src="../images/small-logo.png" height="30" class="d-inline-block align-top" alt=""></li>
                 <li class="nav-item"><a class="nav-link" href="http://localhost/CS4640-ztm4qv-kk6ev-project/templates/homepage-after-login.php">Home</a></li>
                 <li class="nav-item"><a class="nav-link active" href="#">Organizations</a></li>
-                <li class="nav-item"><a class="nav-link" href="http://localhost/CS4640-ztm4qv-kk6ev-project/templates/form.php">Add Organization</a></li>
-            </ul>
+                <li class="nav-item"><a class="nav-link" href="http://localhost/CS4640-ztm4qv-kk6ev-project/templates/form.php">Add Organization</a></li>            
+              </ul>
             <ul class="navbar-nav navbar-right">
+            <li class="nav-item"><form  method="GET"  id="searchform"> 
+      <input  type="text" name="name" placeholder="Search for organization name..."> 
+      <input  type="submit" name="search" value="search"> 
+    </form>  </li>
             <li class="nav-item">
               <a class="nav-link" href="profile.php"><?php echo $_SESSION['first_name'] . "'s Profile";?> </a>
             </li>
@@ -109,68 +107,87 @@
                 </li>
             </ul>
         </nav>
+<p style="text-align:center;"><?php searchbar(); ?></p>
+  <?php
+  function searchbar(){
+    if($_SERVER['REQUEST_METHOD'] == 'GET'){
+     if (isset($_GET['search'])) {
+       global $db;
+       $value = $_GET["name"];
+       $query = "SELECT * FROM table5 WHERE org_name='$value'";
+       $statement = $db->prepare($query);
+       $statement->execute();
+       $results = $statement->fetch();
+       if (($results) == NULL){
+         echo $results['org_name']." is an organization.";
+       }
+       else{
+         echo $value." is not an organization.";
+       }
+      //  return $f;
+       $statement->closecursor();
+     }
+   }
+   }
 
+
+  $stmt = $db->query("SELECT * FROM `table5`");
+  while ($row = $stmt->fetch()) {
+    ?>
+     <?php $pieces = explode("/",$row['days']); 
+      $times = explode("/",$row['times']); 
+      foreach ($times as $key=>$value) {if(empty($value)) unset($times[$key]); }
+      foreach ($pieces as $key=>$value) {if(empty($value)) unset($pieces[$key]); }
+      $finaltimes =array_merge($pieces,$times);
+      // function array_merge_alternating($pieces, $times){
+      $mergedArray = array();
+        while( count($pieces) > 0 || count($times) > 0 ){
+          if ( count($pieces) > 0 )
+          $mergedArray[] = array_shift($pieces);
+          if ( count($times) > 0 )
+          $mergedArray[] = array_shift($times);
+        }
+      //   <?php foreach ($pieces as $item){ echo "<li>$item"; }
+      $key = 1;
+      $lastkey = count($mergedArray);
+      ?>
+      
     <!-- Cards -->
     <section style="padding-left: 14%;">
         <div class="wrapper">
             <div class="tile job-bucket">
               <div class="front">
                 <div class="contents">
-                  <img src="http://localhost/CS4640-ztm4qv-kk6ev-project/images/esc1.png"/>
-                  <h3>ESC</h3>
-                  <p>"Engineering Student Council (ESC) is a Special Status Organization of the University of Virginia and the representative body for undergraduate students of the School of Engineering and Applied Science (SEAS). "</p>
+                  <img src="../uploadedimages/<?php if ($row[6] == NULL) echo 'noimage.jpg'; else{echo ($row[6]);} ?>" />
+                  <h3><?php echo $row['org_name']; ?></h3>
+                  <p><?php echo $row['about']; ?></p>
                 </div>
               </div>
               <div class="back">
-                <h3>Engineering Student Council</h3>
-                <a> Contact: Allison Horenburg (aav56@virginia.edu)</a>
-                <a> Meeting: Wednesday 19:00</a>
-                <a>Dues: $0</a>
-                <a>Location: Thornton Hall - Rodman Room</a>
-              </div>
-            </div>
-            <div class="tile job-bucket">
-              <div class="front">
-                <div class="contents">
-                  <img src="http://localhost/CS4640-ztm4qv-kk6ev-project/images/theta2.png"/>
-                  <h3>Theta Tau</h3>
-                  <p>"Theta Tau strives to promote professional development, service, and brotherhood among its memebers. Events are held throughout the semester to achieve this like food drives, challah for hunger, and a bake sale."</p>
-                </div>
-              </div>
-              <div class="back">
-                <h3>Theta Tau</h3>
-                <a> Contact: Eddie Moder (edv56@virginia.edu)</a>
-                <a> Meeting: Sunday 12:00</a>
-                <a>Dues: $250</a>
-                <a>Location: Thornton Hall - E316</a>
-              </div>
-            </div>
-            <div class="tile job-bucket">
-              <div class="front">
-                <div class="contents">
-                  <img src="http://localhost/CS4640-ztm4qv-kk6ev-project/images/shpe.jpeg"/>
-                  <h3>SPHE</h3>
-                  <p>"Our mission is to promote engineering in the Hispanic/Latino community through recruitment and retention, support diversity in the community, and encourage academic, and professional growth among our members."</p>
-                </div>
-              </div>
-              <div class="back">
-                <h3>SHPE</h3>
-                <a> Contact: Kathryn Waston (aerfc6@virginia.edu)</a>
-                <a> Meeting: Wednesday 13:00</a>
-                <a>Dues: $20</a>
-                <a>Location: Mech Bld</a>
+                <h3 ><?php echo $row['org_name']; ?></h3>
+                <a style = "text-decoration: underline;"> Contact:</a>
+                <?php echo $row['user_email']; ?>
+                <a style = "text-decoration: underline;"> Meeting Days: </a>
+                <?php foreach($mergedArray as $value){
+                  if($key%2){
+                    if($key==$lastkey){ echo $value;}
+                    else{ echo $value." ";}
+                  }
+                  else{
+                    if($key==$lastkey){ echo $value."</br>";}
+                    else{ echo $value."</br>";}}
+                  $key++;} ?>
+                <a style = "text-decoration: underline;">Dues</a>
+                <?php echo $row['dues']; ?>
+                <a style = "text-decoration: underline;">Location</a>
+                <?php echo $row['locations']; ?>
               </div>
             </div>
           </div>
         </section>
+        <?php }
+        $stmt->closecursor(); ?>
 
-    <!-- Footer -->
-    <footer class=" footer">
-        <a href="#"><i class="fa fa-facebook-official"></i></a>
-        <a href="#"><i class="fa fa-pinterest-p"></i></a>
-        <a href="#"><i class="fa fa-twitter"></i></a>
-        <a href="#"><i class="fa fa-flickr"></i></a>
-        <a href="#"><i class="fa fa-linkedin"></i></a>
-      </footer>
+    
     </body>
 </html>
