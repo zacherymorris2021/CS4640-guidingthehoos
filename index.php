@@ -103,6 +103,8 @@
 
   </style>
 
+<?php ob_start(); ?>
+
 <!-- must connect to the DB -->
 <?php require('connect-db.php'); ?> 
 
@@ -209,6 +211,12 @@
     }
 ?>
 
+<script type="text/javascript">
+  function redirect(){
+    window.location.href = 'http://localhost/CS4640-ztm4qv-kk6ev-project/templates/homepage-after-login.php';
+  }
+</script>
+
 <?php
   if($_SERVER['REQUEST_METHOD'] == 'POST'){
     // clean white space
@@ -241,7 +249,10 @@
         $_SESSION['first_name'] = $first_name;
         $_SESSION['last_name'] = $last_name;
         $_SESSION['year'] = $year;
-        header('Location: http://localhost/CS4640-ztm4qv-kk6ev-project/templates/homepage-after-login.php');
+        echo "hello";
+        echo '<script type="text/javascript">',
+        'redirect();',
+        '</script>';
       }
     }
   }

@@ -240,7 +240,7 @@
       echo "Please enter a password!";
     }
 
-    elseif( isset($_POST['pwd']) && (strlen($_POST['pwd']) < 5) && (strlen($_POST['pwd']) > 0) ){ 
+    elseif( isset($_POST['pwd']) && (strlen($_POST['pwd']) <= 5) && (strlen($_POST['pwd']) > 0) ){ 
       echo "Minimum password length is 6!";
     }
   }
@@ -281,6 +281,10 @@
           // Username already exists
           exit;
         } 
+
+        if( isset($_POST['pwd']) && (strlen($_POST['pwd']) <= 5) && (strlen($_POST['pwd']) > 0) ){
+          exit;
+        }
       
         else {
           if(stristr(''.$_POST['email'], '@virginia.edu') == TRUE){
