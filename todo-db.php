@@ -1,3 +1,4 @@
+<!-- Zachery Morris and Katharina Kemper -->
 <?php 
 
 // require: if a required file is not found, reqire() produces a fatal error, the rest of the script won't run

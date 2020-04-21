@@ -1,3 +1,4 @@
+<!-- Zachery Morris and Katharina Kemper -->
 <?php
 
 $hostname='localhost:3306'; // port number 3306 - got from xammp
