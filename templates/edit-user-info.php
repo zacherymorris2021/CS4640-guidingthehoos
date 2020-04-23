@@ -240,7 +240,7 @@
         </form>
     </section>
 
-    <script type="text/javascript" src="http://localhost/CS4640-ztm4qv-kk6ev-project/templates/profile-name-nav.js"></script>
+    <script type="text/javascript" src="http://localhost/CS4640-ztm4qv-kk6ev-project/js/profile-name-nav.js"></script>
 
     <footer class="primary-footer bg-dark">
         <small class="copyright">&copy; Guiding the Hoos</small>
