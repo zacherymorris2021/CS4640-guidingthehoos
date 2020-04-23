@@ -17,7 +17,7 @@
   <body>
 
     <!-- Must connect to the DB -->
-    <?php require('../connect-db.php'); ?> 
+    <?php require('../connect-db.php');?> 
 
     <!-- check if user has session -->
     <?php
@@ -32,7 +32,7 @@
         
     <style>
             html, body {
-      background: url(http://localhost/CS4640-ztm4qv-kk6ev-project/images/planeback3.png) no-repeat center center fixed;
+      /* background: url(http://localhost/CS4640-ztm4qv-kk6ev-project/images/planeback3.png) no-repeat center center fixed; */
       -webkit-background-size: cover;
       -moz-background-size: cover;
       -o-background-size: cover;
@@ -169,7 +169,7 @@
 
           <ul class="navbar-nav navbar-right">
             <li class="nav-item">
-              <a class="nav-link" href="profile.php"><?php echo $_SESSION['first_name'] . "'s Profile";?> </a>
+              <a class="nav-link" href="profile.php"><span id="txtHint"></span><?php echo "'s Profile";?> </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="logout.php">Sign out</a>
@@ -178,6 +178,10 @@
       </nav>
     </section>
 
+    <script type="text/javascript" charset="utf-8">
+      var myVars = <?php echo json_encode($_SESSION['first_name']); ?>;
+    </script>
+    
     <!-- edit profile info card -->
     <section>
         <form action="<?php $_SERVER['PHP_SELF']?>" method="POST"> 
@@ -190,7 +194,7 @@
                 <div class="oneline" style="padding-top:15px;"> 
                     <span class="title1">First Name:</span> 
                     <span class="title2">
-                        <input type="text" style="text-align:center;" name="first_name" placeholder="<?php echo $_SESSION['first_name'];?>"/>
+                        <input type="text" style="text-align:center;" name="first_name" id="first_name" placeholder="<?php echo $_SESSION['first_name'];?>"/>
                     </span>
                 </div>
 
@@ -235,6 +239,8 @@
             </div>
         </form>
     </section>
+
+    <script type="text/javascript" src="http://localhost/CS4640-ztm4qv-kk6ev-project/templates/profile-name-nav.js"></script>
 
     <footer class="primary-footer bg-dark">
         <small class="copyright">&copy; Guiding the Hoos</small>
