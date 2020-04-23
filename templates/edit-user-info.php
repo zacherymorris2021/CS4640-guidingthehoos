@@ -169,7 +169,7 @@
 
           <ul class="navbar-nav navbar-right">
             <li class="nav-item">
-              <a class="nav-link" href="profile.php"><span id="txtHint"></span><?php echo "'s Profile";?> </a>
+              <a class="nav-link" href="profile.php"><span id="profileNameNav"></span><?php echo "'s Profile";?> </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="logout.php">Sign out</a>
@@ -179,7 +179,7 @@
     </section>
 
     <script type="text/javascript" charset="utf-8">
-      var myVars = <?php echo json_encode($_SESSION['first_name']); ?>;
+      var sessionFirstName = <?php echo json_encode($_SESSION['first_name']); ?>;
     </script>
     
     <!-- edit profile info card -->

@@ -1,16 +1,16 @@
-function doSomething(){
-    if( (document.getElementById("txtHint").innerHTML = '') || (document.getElementById("txtHint").innerHTML == null) ){
-        document.getElementById("txtHint").innerHTML = myVars;
+function showProfileName(){
+    if( (document.getElementById("profileNameNav").innerHTML = '') || (document.getElementById("profileNameNav").innerHTML == null) ){
+        document.getElementById("profileNameNav").innerHTML = sessionFirstName;
     }
-    document.getElementById("txtHint").innerHTML = myVars;
+    document.getElementById("profileNameNav").innerHTML = sessionFirstName;
 }
-doSomething();
+showProfileName();
 
 function makeAjaxCall(str)
 {
    if (str.length == 0 || str==null)
    {
-      document.getElementById("txtHint").innerHTML = myVars;
+      document.getElementById("profileNameNav").innerHTML = sessionFirstName;
       return;
    }
 
@@ -30,7 +30,7 @@ function makeAjaxCall(str)
 
    // 4. Assume we are going to send a GET request,
    //    use url rewriting to pass information the backend needs to process the request
-   backend_url += "?StringSoFar=" + str;
+   backend_url += "?NameSoFar=" + str;
 
 
 
@@ -44,7 +44,7 @@ function makeAjaxCall(str)
           if(xhr.status === 200){ // ok
               var res = xhr.responseText;
               // what we want to do
-              showHint(res);
+              showName(res);
           }
           else{ // else how to handle error -- resend request?
               console.log("xhr failed");
@@ -79,15 +79,15 @@ document.getElementById("first_name").addEventListener("keyup", function(){
 
 
 // The callback function processes the response from the server
-function showHint(str)
+function showName(str)
 {
 
    // what do to with the response
     if(str.length == 0 || str==null){
-        document.getElementById('txtHint').innerHTML = '';
+        document.getElementById('profileNameNav').innerHTML = '';
         return;
     }
-    document.getElementById('txtHint').innerHTML = str;
+    document.getElementById('profileNameNav').innerHTML = str;
 }
 
 function GetXmlHttpObject()
