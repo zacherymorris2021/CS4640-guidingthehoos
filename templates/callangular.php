@@ -35,14 +35,8 @@
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <ul class="navbar-nav mr-auto navbar-left">
             <li class="navbar-brand"><img src="../images/small-logo.png" height="30" class="d-inline-block align-top" alt=""></li>
-            <li class="nav-item"><a class="nav-link" href="http://localhost/CS4640-ztm4qv-kk6ev-project/templates/homepage-after-login.php">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="http://localhost/CS4640-ztm4qv-kk6ev-project/templates/organizations.php">Organizations</a></li>
-            <li class="nav-item"><a class="nav-link active" href="#">Add Organization</a></li>
         </ul>
         <ul class="navbar-nav navbar-right">
-            <li class="nav-item">
-                <a class="nav-link" href="profile.php"><?php echo $_SESSION['first_name'] . "'s Profile";?> </a>
-            </li>
             <li class="nav-item">
                 <a class="nav-link" href="logout.php">Sign out</a>
             </li>
