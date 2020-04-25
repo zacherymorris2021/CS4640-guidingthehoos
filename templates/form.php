@@ -233,49 +233,8 @@ function myFunction(id) {
        else
           a.style.display = 'block';
     }
-    // checks if there is an error and if there is not it submits it
+
 function Rightinfo(){
-    // var x,text;
-    // x=document.getElementById("dues").value;
-    // if(isNaN(x)){
-    //     text = "Enter a number";
-    // }
-    // else{
-    //     text="";
-    // }
-    // document.getElementById("msg_num1").innerHTML = text;
-    // var y,text2;
-    // y = document.getElementById("emailholder").value;
-    // if(y.endsWith("@virginia.edu")){
-    //     text2 = "wins";
-    // }
-    // else{
-    //     text2= "Please enter your @virginia.edu email";
-    // }
-    // document.getElementById("msg_num2").innerHTML = text2;
-    // var letters = /^[A-Za-z]+$/;
-    // var z = document.getElementById("firstname").value;
-    // if(z.match(letters)){
-    //     text3="";
-    // }
-    // else{
-    //     text3 = "Please write only letters for your name";
-    // }
-    // document.getElementById("msg_num3").innerHTML = text3;
-    // var last,text4;
-    // var last = document.getElementById("lastname").value;
-    // if(last.match(letters)){
-    //     text4="";
-    // }
-    // else{
-    //     text4 = "Please write only letters for your name";
-    // }
-    // document.getElementById("msg_num4").innerHTML = text4;
-    // var text5;
-    // var orgname= document.getElementById("org_name").value;
-    // if(orgname.length == 0){
-    //     text5 = "Enter the name of your organization"
-    // }
     document.getElementById("msg_num5").innerHTML = text5;  
     
     var frm = document.getElementsByName('RegisterForm')[0];
@@ -286,10 +245,10 @@ function Rightinfo(){
 </script>
 
 <style>
-    {
+    /* {
         margin:0;
         padding:0;
-    }
+    } */
 
     html, body {
       background: url(http://localhost/CS4640-ztm4qv-kk6ev-project/images/planeback3.png) no-repeat center center fixed;

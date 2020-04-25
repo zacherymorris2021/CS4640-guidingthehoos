@@ -91,26 +91,4 @@ function getAllTasks()
 	return $results;
 }
 
-
-// function getTaskInfo_by_id($id)
-// {
-// 	global $db;
-	
-// 	// echo "in getTaskInfo_by_id " . $id ;
-	
-// 	$query = "SELECT * FROM todo where task_id = :id";
-// 	$statement = $db->prepare($query);
-// 	$statement->bindValue(':id', $id);
-// 	$statement->execute();
-	
-// 	// fetchAll() returns an array for all of the rows in the result set
-// 	// fetch() return a row
-// 	$results = $statement->fetch();
-	
-// 	// closes the cursor and frees the connection to the server so other SQL statements may be issued
-// 	$statement->closecursor();
-	
-// 	return $results;
-// }
-
-// ?>
+?>

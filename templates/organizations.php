@@ -191,7 +191,7 @@
             <li class="navbar-brand"><img style="" src="../images/small-logo.png" height="30px" class="d-inline-block align-top" alt=""></li>
             <li class="nav-item"><a class="nav-link" href="http://localhost/CS4640-ztm4qv-kk6ev-project/templates/homepage-after-login.php">Home</a></li>
             <li class="nav-item"><a class="nav-link active" href="#">Organizations</a></li>
-            <li class="nav-item"><a class="nav-link" href="http://localhost/CS4640-ztm4qv-kk6ev-project/templates/form.php">Add Organization</a></li>            
+            <li class="nav-item"><a class="nav-link" href="http://localhost:4200/">Add Organization</a></li>            
         </ul>
 
         <ul class="navbar-nav navbar-right">
@@ -222,7 +222,7 @@
             if (isset($_GET['search'])) {
               global $db;
               $value = $_GET["name"];
-              $query = "SELECT * FROM table5 WHERE org_name='$value'";
+              $query = "SELECT * FROM addorg WHERE name='$value'";
               $statement = $db->prepare($query);
               $statement->execute();
               $results = $statement->fetch();
@@ -237,24 +237,12 @@
           }
         }
 
-        $stmt = $db->query("SELECT * FROM `table5`");
+        // $stmt = $db->query("SELECT * FROM `table5`");
+        $stmt = $db->query("SELECT * FROM `addorg`");
+        $sts = $db->query("SELECT * FROM `addimage`");
         while ($row = $stmt->fetch()) {
+          $col = $sts->fetch();
           ?>
-          <?php $pieces = explode("/",$row['days']); 
-            $times = explode("/",$row['times']); 
-            foreach ($times as $key=>$value) {if(empty($value)) unset($times[$key]); }
-            foreach ($pieces as $key=>$value) {if(empty($value)) unset($pieces[$key]); }
-            $finaltimes =array_merge($pieces,$times);
-            $mergedArray = array();
-              while( count($pieces) > 0 || count($times) > 0 ){
-                if ( count($pieces) > 0 )
-                $mergedArray[] = array_shift($pieces);
-                if ( count($times) > 0 )
-                $mergedArray[] = array_shift($times);
-              }
-            $key = 1;
-            $lastkey = count($mergedArray);
-            ?>
 
           <!-- Cards -->
           <section style="padding-left: 14%;">
@@ -262,38 +250,42 @@
                   <div class="tile job-bucket">
                     <div class="front">
                       <div class="contents">
-                        <img class="img-cards" src="../uploadedimages/<?php if ($row[6] == NULL) echo 'noimage.jpg'; else{echo ($row[6]);} ?>" />
-                        <h3><?php echo $row['org_name']; ?></h3>
+                        <img class="img-cards" src="../uploadedimages/<?php if ($col[0] == NULL) echo 'noimage.jpg'; else{echo ($col[0]);} ?>" />
+                        <h3><?php echo $row['name']; ?></h3>
                         <p><?php echo $row['about']; ?></p>
+                        <a style = "text-decoration:underline;"> Contact:</a>
+                        <div id = "title2"><?php echo $col[1]; ?></div>
                       </div>
                     </div>
                     <div class="back">
-                      <h2><?php echo $row['org_name']; ?></h2>
+                      <h2><?php echo $row['name']; ?></h2>
                       <hr>
-                      <a style = "text-decoration:underline; font-size:20px;"> Contact:</a>
-                      <div id="title2"><?php echo $row['user_email']; ?></div>
-                      <a style = "text-decoration:underline; font-size:20px;"> Meeting Days: </a>
+                      <a style = "text-decoration:underline; font-size:100%;"> Type:</a>
+                      <div id="title2"><?php echo $row['type']; ?></div>
+                      <a style = "text-decoration:underline; font-size:100%;"> Meeting Days: </a>
                       <div id="title2">
-                      <?php foreach($mergedArray as $value){
-                        if($key%2){
-                          if($key==$lastkey){ echo $value;}
-                          else{ echo $value." ";}
-                        }
-                        else{
-                          if($key==$lastkey){ echo $value."</br>";}
-                          else{ echo $value."</br>";}}
-                        $key++;} ?>
+                      <?php  echo $row['days'];
+                      // foreach($mergedArray as $value){
+                        // if($key%2){
+                        //   if($key==$lastkey){ echo $value;}
+                        //   else{ echo $value." ";}
+                        // }
+                        // else{
+                        //   if($key==$lastkey){ echo $value."</br>";}
+                        //   else{ echo $value."</br>";}}
+                        // $key++;} ?>
                         </div>
-                      <a style = "text-decoration:underline; font-size:20px;">Dues:</a>
+                      <a style = "text-decoration:underline; font-size:100%;">Dues:</a>
                       <div id="title2"><?php echo $row['dues']; ?></div>
-                      <a style = "text-decoration:underline; font-size:20px;">Location:</a>
+                      <a style = "text-decoration:underline; font-size:100%;">Location:</a>
                       <div id="title2"><?php echo $row['locations']; ?></div>
                     </div>
                   </div>
                 </div>
               </section>
               <?php }
-            $stmt->closecursor(); ?>
+            $stmt->closecursor();
+            $sts->closecursor(); ?>
           </div>
         </div>
         
