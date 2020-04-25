@@ -35,14 +35,8 @@
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <ul class="navbar-nav mr-auto navbar-left">
             <li class="navbar-brand"><img src="../images/small-logo.png" height="30" class="d-inline-block align-top" alt=""></li>
-            <li class="nav-item"><a class="nav-link" href="http://localhost/CS4640-ztm4qv-kk6ev-project/templates/homepage-after-login.php">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="http://localhost/CS4640-ztm4qv-kk6ev-project/templates/organizations.php">Organizations</a></li>
-            <li class="nav-item"><a class="nav-link active" href="#">Add Organization</a></li>
         </ul>
         <ul class="navbar-nav navbar-right">
-            <li class="nav-item">
-                <a class="nav-link" href="profile.php"><?php echo $_SESSION['first_name'] . "'s Profile";?> </a>
-            </li>
             <li class="nav-item">
                 <a class="nav-link" href="logout.php">Sign out</a>
             </li>
@@ -53,13 +47,14 @@
         <!-- <br> -->
         <form name="RegisterForm" action="<?php $_SERVER['PHP_SELF'] ?>" method="POST"  enctype="multipart/form-data">
         
-            <div class="section"><span>2</span>Image Upload</div>
+            <div class="section"><span>2</span>Image Upload</div> <hr>
             <div class="inner-section">
-                <label>Do you want to include an image of your organization?<br>
-                <input type="file" name ="uploadfile" id = "picupload" /></label>
-            </div>
+                <div class="label"> Upload image for organization:        
+                <input style="margin-left:35px" type="file" name ="uploadfile" id = "picupload" />
               <input type="hidden" name = "useremail" value = "<?php  echo $_SESSION['email'] ?>" />
-              <button type="submit" value="submit" name="submit2">Submit</button> <br>
+              <button type="submit" value="submit" name="submit2">Submit</button>
+              </div>
+              </div>
         </form>
         </div>
     </div>
@@ -143,11 +138,7 @@ function Rightinfo(){
 </script>
 
 <style>
-    /* {
-        margin:0;
-        padding:0;
-    } */
-    button {
+      button {
         border: none;
         outline: 0;
         display: inline-block;
@@ -156,18 +147,14 @@ function Rightinfo(){
         background-color: #0B3F72;
         text-align: center;
         cursor: pointer;
-        /* width: 65%; */
+        width: 10%;
         font-size: 18px;
-        margin:auto;
+        margin-left:125px;;
         border-radius:5px;
-        /* margin-left: 20%; */
-        width: 15%;
       }
 
       button:hover {
         opacity:0.8;
-        background-color: rgb(66, 184, 20) !important;
-        border: greenyellow !important;
         box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
       }
 
@@ -231,12 +218,11 @@ p{
 	margin-bottom: 15px;
 }
 
-.container label{ /*looks at the labels*/
-    display: block;
-    font-size: 90%;
-    font-family: sans-serif;
-    margin-bottom: 15px;
-    color: #0B3F72;
+.label{ /*looks at the labels*/
+  display: block;
+  font-size: 17px;
+  font-family: sans-serif;
+  color: #0B3F72;
 }
 .container input[type="text"] { /*looks at the input type text*/
 	display: block;
@@ -252,6 +238,8 @@ p{
 .container .section{
 	font: normal 20px, serif;
 	color: #2D95EA; 
+  font-weight:550;
+  font-size:20px;
 	margin-bottom: 10px;
 }
 .container .section span {/* sets the number*/
